@@ -99,7 +99,7 @@
             <label for="jabatan" class="form-label">Nama Jabatan</label>
             <select class="form-select" name="jabatan" id="jabatan2">
               <?php foreach ($jabatan as $row) {
-                echo '<option value="'.$row->nama_jabatan.'">'.$row->nama_jabatan.'</option>';
+                echo '<option value="'.$row->nama_jabatan.'">'.$row->nama_jabatan.' ('.$row->group.')</option>';
               } ?>
             </select>
             <input type="hidden" name="parent" id="parent2" value="">
