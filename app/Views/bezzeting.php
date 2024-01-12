@@ -89,12 +89,13 @@
       </div>
       <div class="modal-body">
         <form class="" action="" method="post">
-          <div class="mb-3">
+          <!-- <div class="mb-3">
             <label for="posisi" class="form-label">Posisi Jabatan</label>
             <select name="posisi" id="posisi2" class="form-select">
               <option value="5b">FUNGSIONAL KEAHLIAN</option>
+              <option value="5b">PELAKSANA</option>
             </select>
-          </div>
+          </div> -->
           <div class="mb-3">
             <label for="jabatan" class="form-label">Nama Jabatan</label>
             <select class="form-select" name="jabatan" id="jabatan2">

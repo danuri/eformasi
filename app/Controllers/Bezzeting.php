@@ -40,7 +40,7 @@ class Bezzeting extends BaseController
                 'kode_satker' => $this->request->getVar('kode_satker'),
                 'kode_parent' => $this->request->getVar('kode_parent'),
                 'nama_jabatan' => $this->request->getVar('nama_jabatan'),
-                'posisi' => $this->request->getVar('posisi'),
+                // 'posisi' => $this->request->getVar('posisi'),
                 'created_by' => session('kodesatker'),
               );
       $insert = $model->insert($data);
