@@ -124,11 +124,11 @@ class Bezzeting extends BaseController
       $model = new BezzetingModel;
       $data = (array) $model->find($id);
 
-      if($data['kualifikasi_pendidikan']){
-        $pends = unserialize($data['kualifikasi_pendidikan']);
-        $pends = implode(",", $pends);
-        $data['pends'] = $pends;
-      }
+      // if($data['kualifikasi_pendidikan']){
+      //   $pends = unserialize($data['kualifikasi_pendidikan']);
+      //   $pends = implode(",", $pends);
+      //   $data['pends'] = $pends;
+      // }
 
       return $this->response->setJSON($data);
     }
