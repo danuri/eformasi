@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use App\Models\NonasnModel;
 use App\Models\PendidikanModel;
 use App\Models\JabatanModel;
@@ -22,6 +24,7 @@ class Pppk extends BaseController
       $kode = decrypt($kode);
       $model = new NonasnModel;
       $data['nonasn'] = $model->where(['KODE_SATKER'=>$kode,'status_nonasn'=>'NON ASN'])->findAll();
+      $data['kode'] = $kode;
       return view('nonasn/data', $data);
     }
 
@@ -97,5 +100,44 @@ class Pppk extends BaseController
       $update = $model->update($id,$param);
 
       return redirect()->back()->with('message', 'Data telah diupdate');
+    }
+
+    public function export($kode)
+    {
+      $kode = decrypt($kode);
+      $model = new NonasnModel;
+      $nonasn = $model->where(['KODE_SATKER'=>$kode,'status_nonasn'=>'NON ASN'])->findAll();
+
+      $spreadsheet = new Spreadsheet();
+      $sheet = $spreadsheet->getActiveSheet();
+
+      $sheet->setCellValue('A1', 'NIK');
+      $sheet->setCellValue('B1', 'NAMA');
+      $sheet->setCellValue('C1', 'PENDIDIKAN_LAMA');
+      $sheet->setCellValue('D1', 'JABATAN_LAMA');
+      $sheet->setCellValue('E1', 'UNIT_LAMA');
+      $sheet->setCellValue('F1', 'PENDIDIKAN_BARU');
+      $sheet->setCellValue('G1', 'JABATAN_BARU');
+      $sheet->setCellValue('H1', 'UNIT_BARU');
+
+      $i = 2;
+      foreach ($nonasn as $row) {
+        $sheet->getCell('A'.$i)->setValueExplicit($row->NIK,\PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING2);
+        $sheet->setCellValue('B'.$i, $row->NAMA);
+        $sheet->setCellValue('C'.$i, $row->NAMA_PENDIDIKAN);
+        $sheet->setCellValue('D'.$i, $row->NAMA_JABATAN);
+        $sheet->setCellValue('E'.$i, $row->UNOR_NAMA);
+        $sheet->setCellValue('F'.$i, $row->pendidikan_baru);
+        $sheet->setCellValue('G'.$i, $row->jabatan_baru);
+        $sheet->setCellValue('H'.$i, $row->unit_penempatan_nama_baru);
+
+        $i++;
+      }
+
+      $writer = new Xlsx($spreadsheet);
+      header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      header('Content-Disposition: attachment; filename="Data_nonasn_'.$kode.'.xlsx"');
+      $writer->save('php://output');
+      exit();
     }
 }

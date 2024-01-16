@@ -9,8 +9,7 @@
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Formasi</a></li>
-                        <li class="breadcrumb-item active">Mapping</li>
+                        <li class="breadcrumb-item"><a href="<?= site_url('pppk/export/'.encrypt($kode))?>" class="btn btn-success">Export Excel</a></li>
                     </ol>
                 </div>
 
