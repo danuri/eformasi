@@ -129,6 +129,7 @@ class Bezzeting extends BaseController
       //   $pends = implode(",", $pends);
       //   $data['pends'] = $pends;
       // }
+      $data['pends'] = [];
 
       return $this->response->setJSON($data);
     }
