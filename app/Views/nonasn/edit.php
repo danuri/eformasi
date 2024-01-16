@@ -108,7 +108,9 @@
                       <label for="pendidikan" class="form-label">Pendidikan</label>
                   </div>
                   <div class="col-lg-9">
-                    <select class="form-select" name="pendidikan" id="pendidikan"></select>
+                    <select class="form-select" name="pendidikan" id="pendidikan">
+                      <option value="<?= $nonasn->pendidikan_baru?>" selected="selected"><?= $nonasn->pendidikan_baru?></option>
+                    </select>
                   </div>
               </div>
               <div class="row mb-3">
@@ -129,7 +131,9 @@
                       <label for="penempatan" class="form-label">Unit Penempatan</label>
                   </div>
                   <div class="col-lg-9">
-                    <select class="form-select" name="unor" id="unor"></select>
+                    <select class="form-select" name="unor" id="unor">
+                      <option value="<?= $nonasn->unit_penempatan_nama_baru?>" selected="selected"><?= $nonasn->unit_penempatan_nama_baru?></option>
+                    </select>
                   </div>
               </div>
 
