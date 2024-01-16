@@ -128,16 +128,6 @@
             <label for="posisi" class="form-label">Jabatan</label>
             <input type="text" class="form-control" name="" id="nama_jabatan" disabled>
           </div>
-          <!-- <div class="mb-3">
-            <label for="jabatan" class="form-label">Pendidikan</label>
-            <select class="form-control" name="pendidikan[]" id="choices-multiple-groups" name="choices-multiple-groups" data-choices data-choices-multiple-groups="true" multiple>
-              <?php
-              foreach ($pendidikan as $row) {
-                echo '<option value="'.$row->pendidikan.'">'.$row->pendidikan.'</option>';
-              }
-              ?>
-            </select>
-          </div> -->
           <div class="row mb-3">
             <div class="col-lg-3">
               <label for="unit2" class="form-label">ABK</label>
@@ -178,14 +168,6 @@
               <input type="text" class="form-control" id="usul_pns" name="usul_pns">
             </div>
           </div>
-          <!-- <div class="row mb-3">
-            <div class="col-lg-3">
-              <label for="unit1" class="form-label">MHPK</label>
-            </div>
-            <div class="col-lg-9">
-              <input type="text" class="form-control" id="mhpk" name="mhpk">
-            </div>
-          </div> -->
           <input type="hidden" name="id" id="idpend" value="">
         </form>
       </div>
