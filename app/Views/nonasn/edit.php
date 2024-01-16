@@ -85,7 +85,7 @@
                           <option value="Tidak Aktif" <?= ($nonasn->status_pemetaan == 'Tidak Aktif')?'selected':'';?>>Tidak Aktif</option>
                           <option value="Meninggal Dunia" <?= ($nonasn->status_pemetaan == 'Meninggal Dunia')?'selected':'';?>>Meninggal Dunia</option>
                           <option value="Alih Daya" <?= ($nonasn->status_pemetaan == 'Alih Daya')?'selected':'';?>>Alih Daya (Pengemudi/Petugas Keamanan/Cleaning)</option>
-                          <option value="PPPK" <?= ($nonasn->status_pemetaan == 'PPPK')?'selected':'';?>>Lulus PPPK</option>
+                          <option value="PPPK" <?= ($nonasn->status_pemetaan == 'PPPK')?'selected':'';?>>Lulus CASN</option>
                         </select>
                       </div>
                   </div>
@@ -154,7 +154,6 @@
       window.location.replace("<?= site_url('pppk/status/'.encrypt($nonasn->ID))?>/"+$('#statuspemetaan').val());
     });
 
-    $('#pendidikan').select2();
     $('#jabatan').select2();
   });
 
@@ -209,7 +208,7 @@
       processResults: (data, params) => {
           const results = data.map(item => {
             return {
-              id: item.id,
+              id: item.kode,
               text: item.nama,
             };
           });
@@ -218,7 +217,7 @@
           }
         },
     },
-    placeholder: 'Cari Unor',
+    placeholder: 'Cari Pendidikan',
     minimumInputLength: 5,
   });
 </script>
