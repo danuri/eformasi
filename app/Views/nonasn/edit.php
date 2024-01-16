@@ -85,6 +85,7 @@
                           <option value="Tidak Aktif" <?= ($nonasn->status_pemetaan == 'Tidak Aktif')?'selected':'';?>>Tidak Aktif</option>
                           <option value="Meninggal Dunia" <?= ($nonasn->status_pemetaan == 'Meninggal Dunia')?'selected':'';?>>Meninggal Dunia</option>
                           <option value="Alih Daya" <?= ($nonasn->status_pemetaan == 'Alih Daya')?'selected':'';?>>Alih Daya (Pengemudi/Petugas Keamanan/Cleaning)</option>
+                          <option value="PPPK" <?= ($nonasn->status_pemetaan == 'PPPK')?'selected':'';?>>Lulus PPPK</option>
                         </select>
                       </div>
                   </div>

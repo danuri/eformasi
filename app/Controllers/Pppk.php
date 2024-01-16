@@ -21,7 +21,7 @@ class Pppk extends BaseController
     {
       $kode = decrypt($kode);
       $model = new NonasnModel;
-      $data['nonasn'] = $model->where(['KODE_SATKER'=>$kode,'status_nonasn'=>'NON ASN'])->findAll();
+      $data['nonasn'] = $model->where(['KODE_SATKER'=>$kode])->findAll();
       return view('nonasn/data', $data);
     }
 
