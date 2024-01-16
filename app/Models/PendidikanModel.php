@@ -8,7 +8,7 @@ class PendidikanModel extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'ref_pendidikan';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'kode';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;

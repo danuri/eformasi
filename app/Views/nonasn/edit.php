@@ -110,7 +110,7 @@
                     <select class="form-select select2" name="pendidikan" id="pendidikan">
                       <?php
                       foreach ($pendidikan as $row) {
-                        echo '<option value="'.$row->pendidikan.'">'.$row->pendidikan.'</option>';
+                        echo '<option value="'.$row->nama.'">'.$row->nama.'</option>';
                       }
                       ?>
                     </select>
