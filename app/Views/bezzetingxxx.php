@@ -178,6 +178,14 @@
               <input type="text" class="form-control" id="usul_pns" name="usul_pns">
             </div>
           </div>
+          <div class="row mb-3">
+            <div class="col-lg-3">
+              <label for="unit1" class="form-label">USUL CPPPK</label>
+            </div>
+            <div class="col-lg-9">
+              <input type="text" class="form-control" id="usul_pppk" name="usul_pppk">
+            </div>
+          </div>
           <!-- <div class="row mb-3">
             <div class="col-lg-3">
               <label for="unit1" class="form-label">MHPK</label>
@@ -232,7 +240,8 @@ $(document).ready(function() {
                     { name: 'cpns', type: 'number' },
                     { name: 'pppk', type: 'number' },
                     { name: 'riil', type: 'number' },
-                    { name: 'usul_pns', type: 'number' }
+                    { name: 'usul_pns', type: 'number' },
+                    { name: 'usul_pppk', type: 'number' }
                 ],
                 hierarchy:
                 {
@@ -434,6 +443,14 @@ $(document).ready(function() {
                         cellsAlign: "center",
                         align: "center",
                         width: 80,
+                    },
+                    {
+                        text: "PPPK",
+                         dataField: "usul_pppk",
+                        columnGroup: "Usulan_2020",
+                        cellsAlign: "center",
+                        align: "center",
+                        width: 60,
                     },
                     {
                         text: "TOTAL",

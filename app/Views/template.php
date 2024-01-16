@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     <!-- Layout config Js -->
     <script src="<?= base_url() ?>assets/js/layout.js"></script>
     <!-- Bootstrap Css -->
@@ -145,7 +147,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="<?= site_url('bezzeting')?>">
-                                <i class="ri-profile-line"></i> <span data-key="t-dashboards">Bezzeting</span>
+                                <i class="ri-profile-line"></i> <span data-key="t-dashboards">CPNS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="<?= site_url('pppk')?>">
+                                <i class="ri-profile-line"></i> <span data-key="t-dashboards">PPPK</span>
                             </a>
                         </li>
                         <li class="nav-item">

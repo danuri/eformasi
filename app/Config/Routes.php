@@ -50,6 +50,15 @@ $routes->group("bezzeting", ["filter" => "auth"], function ($routes) {
     $routes->post('savependidikan', 'Bezzeting::savependidikan');
 });
 
+$routes->group("pppk", ["filter" => "auth"], function ($routes) {
+    $routes->get('', 'Pppk::index');
+    $routes->get('edit/(:any)', 'Pppk::edit/$1');
+    $routes->post('edit/(:any)', 'Pppk::editsave/$1');
+    $routes->get('data/(:any)', 'Pppk::data/$1');
+    $routes->get('status/(:any)/(:any)', 'Pppk::status/$1/$2');
+    $routes->get('search', 'Pppk::searchunor');
+});
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
