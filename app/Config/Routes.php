@@ -57,6 +57,7 @@ $routes->group("pppk", ["filter" => "auth"], function ($routes) {
     $routes->get('data/(:any)', 'Pppk::data/$1');
     $routes->get('status/(:any)/(:any)', 'Pppk::status/$1/$2');
     $routes->get('search', 'Pppk::searchunor');
+    $routes->get('searchpendidikan', 'Pppk::searchpendidikan');
 });
 
 /*

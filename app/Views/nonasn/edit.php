@@ -107,14 +107,7 @@
                       <label for="pendidikan" class="form-label">Pendidikan</label>
                   </div>
                   <div class="col-lg-9">
-                    <select class="form-select select2" name="pendidikan" id="pendidikan">
-                      <?php
-                      foreach ($pendidikan as $row) {
-                        $select = ($row->nama == $nonasn->pendidikan_baru)?'selected':'';
-                        echo '<option value="'.$row->nama.'" '.$select.'>'.$row->nama.'</option>';
-                      }
-                      ?>
-                    </select>
+                    <select class="form-select" name="pendidikan" id="pendidikan"></select>
                   </div>
               </div>
               <div class="row mb-3">
@@ -167,6 +160,38 @@
   $('#unor').select2({
     ajax: {
       url: '<?= site_url() ?>pppk/search',
+      data: function (params) {
+        var query = {
+          search: params.term,
+          type: 'public'
+        }
+
+        return query;
+      },
+      processResults: function (data) {
+        return {
+          results: data
+        };
+      },
+      processResults: (data, params) => {
+          const results = data.map(item => {
+            return {
+              id: item.id,
+              text: item.nama,
+            };
+          });
+          return {
+            results: results,
+          }
+        },
+    },
+    placeholder: 'Cari Unor',
+    minimumInputLength: 5,
+  });
+
+  $('#pendidikan').select2({
+    ajax: {
+      url: '<?= site_url() ?>pppk/searchpendidikan',
       data: function (params) {
         var query = {
           search: params.term,

@@ -50,6 +50,15 @@ class Pppk extends BaseController
       return $this->response->setJSON($data);
     }
 
+    public function searchpendidikan()
+    {
+      $model = new PendidikanModel;
+      $search = $this->request->getVar('search');
+
+      $data = $model->like('nama', $search, 'both')->findAll();
+      return $this->response->setJSON($data);
+    }
+
     public function status($id,$status)
     {
       $id = decrypt($id);

@@ -49,7 +49,7 @@
                     <td>
                       Pendidikan: <?= $row->pendidikan_baru?><br>
                       Jabatan: <?= $row->jabatan_baru?><br>
-                      Unit: <?= $row->unit_penempatan_baru?><br>
+                      Unit: <?= $row->unit_penempatan_nama_baru?><br>
                     </td>
                     <td><?= $row->status_pemetaan?></td>
                     <td><?= $status?></td>
