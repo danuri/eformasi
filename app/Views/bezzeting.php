@@ -100,7 +100,7 @@
             <label for="jabatan" class="form-label">Nama Jabatan</label>
             <select class="form-select" name="jabatan" id="jabatan2">
               <?php foreach ($jabatan as $row) {
-                echo '<option value="'.$row->nama_jabatan.'">'.$row->nama_jabatan.' ('.$row->group.')</option>';
+                echo '<option value="'.$row->kode_jabatan.'">'.$row->nama_jabatan.'</option>';
               } ?>
             </select>
             <input type="hidden" name="parent" id="parent2" value="">
@@ -221,7 +221,7 @@ $(document).ready(function() {
                     keyDataField: { name: 'headId' },
                     parentDataField: { name: 'induk' }
                 },
-                id: 'Id',
+                id: 'headId',
                 root: 'value',
                 url: '<?= site_url('bezzeting/dxuf')?>'
             };
@@ -631,7 +631,8 @@ function submit() {
 function submit2() {
   axios.post('<?= site_url()?>/bezzeting/insert', {
     posisi: $('#posisi2').val(),
-    nama_jabatan: $('#jabatan2').val(),
+    kode_satker: $('#jabatan2').val(),
+    nama_jabatan: $( "#jabatan2 option:selected" ).text(),
     kode_parent: $('#parent2').val()
   })
   .then(function (response) {
