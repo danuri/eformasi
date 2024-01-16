@@ -110,7 +110,8 @@
                     <select class="form-select select2" name="pendidikan" id="pendidikan">
                       <?php
                       foreach ($pendidikan as $row) {
-                        echo '<option value="'.$row->nama.'">'.$row->nama.'</option>';
+                        $select = ($row->nama == $nonasn->pendidikan_baru)?'selected':'';
+                        echo '<option value="'.$row->nama.'" '.$select.'>'.$row->nama.'</option>';
                       }
                       ?>
                     </select>
@@ -123,7 +124,8 @@
                   <div class="col-lg-9">
                     <select class="form-select select2" name="jabatan" id="jabatan">
                       <?php foreach ($jabatan as $row) {
-                        echo '<option value="'.$row->nama_jabatan.'">'.$row->nama_jabatan.' ('.$row->group.')</option>';
+                        $select = ($row->nama == $nonasn->pendidikan_baru)?'selected':'';
+                        echo '<option value="'.$row->nama_jabatan.'" '.$select.'>'.$row->nama_jabatan.' ('.$row->group.')</option>';
                       } ?>
                     </select>
                   </div>

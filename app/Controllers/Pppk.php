@@ -75,7 +75,7 @@ class Pppk extends BaseController
 
       $munor = new UnorModel;
       $unorid = $this->request->getVar('unor');
-      $namaunor = $munor->find($unorid);
+      $namaunor = $munor->find($unorid)->nama;
 
       $id = decrypt($id);
       $param = [
