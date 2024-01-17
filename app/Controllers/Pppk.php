@@ -129,6 +129,7 @@ class Pppk extends BaseController
       $sheet->setCellValue('F1', 'PENDIDIKAN_BARU');
       $sheet->setCellValue('G1', 'JABATAN_BARU');
       $sheet->setCellValue('H1', 'UNIT_BARU');
+      $sheet->setCellValue('I1', 'STATUS_PEGAWAI');
 
       $i = 2;
       foreach ($nonasn as $row) {
@@ -140,6 +141,7 @@ class Pppk extends BaseController
         $sheet->setCellValue('F'.$i, $row->pendidikan_baru);
         $sheet->setCellValue('G'.$i, $row->jabatan_baru);
         $sheet->setCellValue('H'.$i, $row->unit_penempatan_nama_baru);
+        $sheet->setCellValue('I'.$i, $row->status_nonasn);
 
         $i++;
       }
