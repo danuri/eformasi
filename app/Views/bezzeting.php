@@ -221,7 +221,7 @@ $(document).ready(function() {
                     keyDataField: { name: 'headId' },
                     parentDataField: { name: 'induk' }
                 },
-                id: 'headId',
+                id: 'Id',
                 root: 'value',
                 url: '<?= site_url('bezzeting/dxuf')?>'
             };
