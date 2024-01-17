@@ -27,6 +27,7 @@
                   <th>NAMA</th>
                   <th>DATA LAMA</th>
                   <th>DATA BARU</th>
+                  <th>STATUS PEGAWAI</th>
                   <th>STATUS NONASN</th>
                   <th>STATUS</th>
                   <th>MAPPING</th>
@@ -50,6 +51,7 @@
                       Jabatan: <?= $row->jabatan_baru?><br>
                       Unit: <?= $row->unit_penempatan_nama_baru?><br>
                     </td>
+                    <td><?= $row->status_nonasn?></td>
                     <td><?= $row->status_pemetaan?></td>
                     <td><?= $status?></td>
                     <td><a href="<?= site_url('pppk/edit/'.encrypt($row->ID))?>" target="_blank">Ubah</a></td>

@@ -76,6 +76,18 @@
                   </div>
                   <div class="row mb-3">
                       <div class="col-lg-3">
+                          <label for="penempatan" class="form-label">Status Pegawai</label>
+                      </div>
+                      <div class="col-lg-9">
+                        <select class="form-select" name="status_nonasn" id="status_nonasn">
+                          <option value=""></option>
+                          <option value="NON ASN" <?= ($nonasn->status_pemetaan == 'NON ASN')?'selected':'';?>>NON ASN</option>
+                          <option value="PPPK" <?= ($nonasn->status_pemetaan == 'PPPK')?'selected':'';?>>PPPK</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="row mb-3">
+                      <div class="col-lg-3">
                           <label for="penempatan" class="form-label">Status Non ASN</label>
                       </div>
                       <div class="col-lg-9">
@@ -156,6 +168,10 @@
   $(document).ready(function() {
     $('#statuspemetaan').on('change',function(event) {
       window.location.replace("<?= site_url('pppk/status/'.encrypt($nonasn->ID))?>/"+$('#statuspemetaan').val());
+    });
+
+    $('#status_nonasn').on('change',function(event) {
+      window.location.replace("<?= site_url('pppk/statuspegawai/'.encrypt($nonasn->ID))?>/"+$('#status_nonasn').val());
     });
 
     $('#jabatan').select2();

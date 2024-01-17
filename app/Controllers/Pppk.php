@@ -23,7 +23,7 @@ class Pppk extends BaseController
     {
       $kode = decrypt($kode);
       $model = new NonasnModel;
-      $data['nonasn'] = $model->where(['KODE_SATKER'=>$kode,'status_nonasn'=>'NON ASN'])->findAll();
+      $data['nonasn'] = $model->where(['KODE_SATKER'=>$kode])->findAll();
       $data['kode'] = $kode;
       return view('nonasn/data', $data);
     }
@@ -70,6 +70,16 @@ class Pppk extends BaseController
       $update = $model->update($id,['status_pemetaan'=>$status]);
 
       return redirect()->back()->with('message', 'Status diperbaharui');
+    }
+
+    public function statuspegawai($id,$status)
+    {
+      $id = decrypt($id);
+
+      $model = new NonasnModel;
+      $update = $model->update($id,['status_nonasn'=>$status]);
+
+      return redirect()->back()->with('message', 'Status Pegawai diperbaharui');
     }
 
     public function editsave($id)
