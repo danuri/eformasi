@@ -81,8 +81,8 @@
                       <div class="col-lg-9">
                         <select class="form-select" name="status_nonasn" id="status_nonasn">
                           <option value=""></option>
-                          <option value="NON ASN" <?= ($nonasn->status_pemetaan == 'NON ASN')?'selected':'';?>>NON ASN</option>
-                          <option value="PPPK" <?= ($nonasn->status_pemetaan == 'PPPK')?'selected':'';?>>PPPK</option>
+                          <option value="NON ASN" <?= ($nonasn->status_nonasn == 'NON ASN')?'selected':'';?>>NON ASN</option>
+                          <option value="PPPK" <?= ($nonasn->status_nonasn == 'PPPK')?'selected':'';?>>PPPK</option>
                         </select>
                       </div>
                   </div>
