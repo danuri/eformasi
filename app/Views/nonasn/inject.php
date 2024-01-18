@@ -20,7 +20,8 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            ssss
+            <p>Silahkan Download template untuk inject data > <a href="<?= base_url('template_cpppk.xlsx')?>">download</a></p>
+            <p>Lihat referensi Unor, Jabatan dan Pendidikan > <a href="#">Lihat Referensi</a></p>
           </div>
         </div>
       </div>

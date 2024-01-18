@@ -144,7 +144,7 @@
                   </div>
                   <div class="col-lg-9">
                     <select class="form-select" name="unor" id="unor">
-                      <option value="<?= $nonasn->unit_penempatan_nama_baru?>" selected="selected"><?= $nonasn->unit_penempatan_nama_baru?></option>
+                      <option value="<?= $nonasn->unit_penempatan_baru?>" selected="selected"><?= $nonasn->unit_penempatan_nama_baru?></option>
                     </select>
                   </div>
               </div>
