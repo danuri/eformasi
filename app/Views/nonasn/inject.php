@@ -20,9 +20,26 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <p>Silahkan Download template untuk inject data > <a href="<?= base_url('template_cpppk.xlsx')?>">download</a></p>
-            <p>Lihat referensi Unor, Jabatan dan Pendidikan > <a href="https://docs.google.com/spreadsheets/d/1X25QIU077oHM4fLIe0bQ9sjOudcScrJkbqm85CWcfMo/edit?usp=sharing" target="_blank">Lihat Referensi</a></p>
+            <ul>
+              <li>Silahkan Download template untuk inject data > <a href="<?= base_url('template_cpppk.xlsx')?>">download</a></li>
+              <li>Lihat referensi Unor, Jabatan dan Pendidikan > <a href="https://docs.google.com/spreadsheets/d/1X25QIU077oHM4fLIe0bQ9sjOudcScrJkbqm85CWcfMo/edit?usp=sharing" target="_blank">Lihat Referensi</a></li>
+              <li>Data yang diinject terbatas pada pemilihan Unor sebelumnya</li>
+              <li>Maksimal 100 baris</li>
+            </ul>
           </div>
+        </div>
+
+        <div class="card card-body">
+          <form action="" method="post" enctype="multipart/form-data">
+              <div class="row row-cols-lg-auto g-3 align-items-center">
+                  <div class="col-12">
+                      <input type="file" class="form-control" id="lampiran" placeholder="File" name="lampiran">
+                  </div>
+                  <div class="col-12">
+                      <button type="submit" class="btn btn-primary">Mulai Import</button>
+                  </div>
+              </div>
+          </form>
         </div>
       </div>
     </div>

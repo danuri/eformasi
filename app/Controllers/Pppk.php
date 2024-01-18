@@ -9,6 +9,7 @@ use App\Models\NonasnModel;
 use App\Models\PendidikanModel;
 use App\Models\JabatanModel;
 use App\Models\UnorModel;
+use CodeIgniter\Files\File;
 
 class Pppk extends BaseController
 {
@@ -116,6 +117,85 @@ class Pppk extends BaseController
       $update = $model->update($id,$param);
 
       return redirect()->back()->with('message', 'Data telah diupdate');
+    }
+
+    public function import($id)
+		{
+			$file_excel = $this->request->getFile('lampiran');
+			$ext = $file_excel->getClientExtension();
+			if($ext == 'xls') {
+				$render = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+			} else {
+				$render = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			}
+			$spreadsheet = $render->load($file_excel);
+
+			$data = $spreadsheet->getActiveSheet()->toArray();
+			foreach($data as $x => $row) {
+				if ($x == 0) {
+					continue;
+				}
+
+				$id = $row[0];
+				$nik = $row[1];
+				$pendidikan = $row[2];
+				$jabatan = $row[3];
+				$unor = $row[4];
+
+
+        $munor = new UnorModel;
+        $namaunor = $munor->find($unor)->nama;
+
+        $param = [
+          'status_nonasn' => 'NON ASN',
+          'status_pemetaan' => 'Aktif',
+          'pendidikan_baru' => $pendidikan,
+          'jabatan_baru' => $jabatan,
+          'unit_penempatan_baru' => $unor,
+          'unit_penempatan_nama_baru' => $namaunor,
+        ];
+
+        $model = new NonasnModel;
+        $update = $model->where(['ID'=>$id,'NIK'=>$nik])->set($param)->update();
+			}
+
+			return redirect()->back()->with('message', 'Data telah diimport');
+		}
+
+    public function importx($id)
+    {
+        $validationRule = [
+            'lampiran' => [
+                'label' => 'File Import',
+                'rules' => [
+                    'uploaded[lampiran]',
+                    'mime_in[lampiran,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]'
+                ],
+            ],
+        ];
+        if (! $this->validate($validationRule)) {
+            $data = ['errors' => $this->validator->getErrors()];
+
+            return view('upload_form', $data);
+        }
+
+        $img = $this->request->getFile('lampiran');
+
+        if (! $img->hasMoved()) {
+            $filepath = WRITEPATH . 'uploads/' . $img->store();
+
+            // $data = ['uploaded_fileinfo' => new File($filepath)];
+            $data = new File($filepath);
+            // print_r($data);
+            $filename = $data->getBasename();
+
+            $inputFileName = './uploads/'.date('Ymd').'/'.$filename;
+            $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileName);
+        }
+
+        // $data = ['errors' => 'The file has already been moved.'];
+        //
+        // return view('upload_form', $data);
     }
 
     public function export($kode)

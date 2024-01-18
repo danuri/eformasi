@@ -59,4 +59,5 @@ $routes->group("pppk", ["filter" => "auth"], function ($routes) {
     $routes->get('searchpendidikan', 'Pppk::searchpendidikan');
     $routes->get('export/(:any)', 'Pppk::export/$1');
     $routes->get('inject/(:any)', 'Pppk::inject/$1');
+    $routes->post('inject/(:any)', 'Pppk::import/$1');
 });
