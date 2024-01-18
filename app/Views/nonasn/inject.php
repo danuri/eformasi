@@ -21,7 +21,7 @@
         <div class="card">
           <div class="card-body">
             <p>Silahkan Download template untuk inject data > <a href="<?= base_url('template_cpppk.xlsx')?>">download</a></p>
-            <p>Lihat referensi Unor, Jabatan dan Pendidikan > <a href="#">Lihat Referensi</a></p>
+            <p>Lihat referensi Unor, Jabatan dan Pendidikan > <a href="https://docs.google.com/spreadsheets/d/1X25QIU077oHM4fLIe0bQ9sjOudcScrJkbqm85CWcfMo/edit?usp=sharing" target="_blank">Lihat Referensi</a></p>
           </div>
         </div>
       </div>
