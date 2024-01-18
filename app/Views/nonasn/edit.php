@@ -107,7 +107,7 @@
           </div>
         </div>
 
-        <?php if($nonasn->status_pemetaan == 'Aktif'){ ?>
+        <?php if($nonasn->status_pemetaan == 'Aktif' && $nonasn->status_nonasn == 'NON ASN'){ ?>
 
         <div class="card">
           <div class="card-header">

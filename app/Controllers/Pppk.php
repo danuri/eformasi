@@ -35,8 +35,8 @@ class Pppk extends BaseController
       $model = new NonasnModel;
       $data['nonasn'] = $model->find($id);
 
-      $pend = new PendidikanModel;
-      $data['pendidikan'] = $pend->findAll();
+      // $pend = new PendidikanModel;
+      // $data['pendidikan'] = $pend->findAll();
 
       $jabm = new JabatanModel;
       $data['jabatan'] = $jabm->findAll();
