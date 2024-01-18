@@ -28,6 +28,12 @@ class Pppk extends BaseController
       return view('nonasn/data', $data);
     }
 
+    public function inject($kode)
+    {
+      $data['kode'] = $kode;
+      return view('nonasn/inject', $data);
+    }
+
     public function edit($id)
     {
       $id = decrypt($id);

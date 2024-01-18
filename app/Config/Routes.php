@@ -35,6 +35,19 @@ $routes->group("bezzeting", ["filter" => "auth"], function ($routes) {
     $routes->post('savependidikan', 'Bezzeting::savependidikan');
 });
 
+$routes->group("cpns", ["filter" => "auth"], function ($routes) {
+    $routes->get('', 'Cpns::index');
+    $routes->get('sub/(:any)', 'Cpns::sub/$1');
+    $routes->get('delete/(:any)', 'Cpns::delete/$1');
+    $routes->post('insert', 'Cpns::insert');
+    $routes->post('edit/(:any)', 'Pppk::editsave/$1');
+    $routes->get('status/(:any)/(:any)', 'Pppk::status/$1/$2');
+    $routes->get('statuspegawai/(:any)/(:any)', 'Pppk::statuspegawai/$1/$2');
+    $routes->get('search', 'Pppk::searchunor');
+    $routes->get('searchpendidikan', 'Pppk::searchpendidikan');
+    $routes->get('export/(:any)', 'Pppk::export/$1');
+});
+
 $routes->group("pppk", ["filter" => "auth"], function ($routes) {
     $routes->get('', 'Pppk::index');
     $routes->get('edit/(:any)', 'Pppk::edit/$1');
@@ -45,4 +58,5 @@ $routes->group("pppk", ["filter" => "auth"], function ($routes) {
     $routes->get('search', 'Pppk::searchunor');
     $routes->get('searchpendidikan', 'Pppk::searchpendidikan');
     $routes->get('export/(:any)', 'Pppk::export/$1');
+    $routes->get('inject/(:any)', 'Pppk::inject/$1');
 });

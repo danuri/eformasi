@@ -364,6 +364,14 @@ function hp($nohp) {
    }
  }
 
+ function getJabatan($unorid)
+ {
+   $db = \Config\Database::connect('default', false);
+
+   $query = $db->query("SELECT * FROM tr_usulan_jabatan WHERE unor_id='$unorid'")->getResult();
+   return $query;
+ }
+
  define('ENCRYPTION_KEY', '4736d52f85bdb63e46bf7d6d41bbd551af36e1bfb7c68164bf81e2400d291319');
  function encrypt($string, $salt = null)
  {

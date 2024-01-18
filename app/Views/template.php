@@ -146,7 +146,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="<?= site_url('bezzeting')?>">
+                            <a class="nav-link menu-link" href="<?= site_url('cpns')?>">
                                 <i class="ri-profile-line"></i> <span data-key="t-dashboards">CPNS</span>
                             </a>
                         </li>

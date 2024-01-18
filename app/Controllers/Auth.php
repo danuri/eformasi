@@ -60,6 +60,7 @@ class Auth extends BaseController
               'idsatker'  => $cek->id,
               'kodesatker' => $cek->kode_satker,
               'satker'     => $cek->satuan_kerja,
+              'unorid'     => $cek->unor_id,
               'isLoggedIn' => TRUE
             ];
             session()->set($ses_data);

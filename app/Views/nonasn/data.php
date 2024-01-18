@@ -9,6 +9,7 @@
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="<?= site_url('pppk/inject/'.encrypt($kode))?>" class="btn btn-warning">Inject Formasi</a></li>
                         <li class="breadcrumb-item"><a href="<?= site_url('pppk/export/'.encrypt($kode))?>" class="btn btn-success">Export Excel</a></li>
                     </ol>
                 </div>
