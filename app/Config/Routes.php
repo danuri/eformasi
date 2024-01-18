@@ -27,9 +27,9 @@ $routes->get('rekapitulasi', 'Rekapitulasi::index',['filter' => 'auth']);
 $routes->group("bezzeting", ["filter" => "auth"], function ($routes) {
     $routes->get('', 'Bezzeting::index');
     $routes->get('dxuf', 'Bezzeting::dxuf');
-    $routes->post('insert', 'Bezzeting::insert');
-    $routes->get('delete/(:any)', 'Bezzeting::delete/$1');
-    $routes->get('deletex/(:any)', 'Bezzeting::deletex/$1');
+    // $routes->post('insert', 'Bezzeting::insert');
+    // $routes->get('delete/(:any)', 'Bezzeting::delete/$1');
+    // $routes->get('deletex/(:any)', 'Bezzeting::deletex/$1');
     $routes->get('getdata/(:any)', 'Bezzeting::getdata/$1');
     $routes->get('getunorchild/(:any)', 'Bezzeting::getUnorChild/$1');
     $routes->post('savependidikan', 'Bezzeting::savependidikan');

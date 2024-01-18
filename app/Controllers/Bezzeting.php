@@ -145,7 +145,7 @@ class Bezzeting extends BaseController
         'usul_pns' => $this->request->getVar('usul_pns'),
         'usul_pppk' => $this->request->getVar('usul_pppk'),
         'mhpk' => $this->request->getVar('mhpk'),
-        'kualifikasi_pendidikan' => serialize($this->request->getVar('pendidikan')),
+        // 'kualifikasi_pendidikan' => serialize($this->request->getVar('pendidikan')),
       ];
       $model->set($data)->where(['id'=>$this->request->getVar('idpend'),'created_by'=>session('kodesatker')])->update();
 

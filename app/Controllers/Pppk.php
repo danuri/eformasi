@@ -121,27 +121,29 @@ class Pppk extends BaseController
       $spreadsheet = new Spreadsheet();
       $sheet = $spreadsheet->getActiveSheet();
 
-      $sheet->setCellValue('A1', 'NIK');
-      $sheet->setCellValue('B1', 'NAMA');
-      $sheet->setCellValue('C1', 'PENDIDIKAN_LAMA');
-      $sheet->setCellValue('D1', 'JABATAN_LAMA');
-      $sheet->setCellValue('E1', 'UNIT_LAMA');
-      $sheet->setCellValue('F1', 'PENDIDIKAN_BARU');
-      $sheet->setCellValue('G1', 'JABATAN_BARU');
-      $sheet->setCellValue('H1', 'UNIT_BARU');
-      $sheet->setCellValue('I1', 'STATUS_PEGAWAI');
+      $sheet->setCellValue('A1', 'ID');
+      $sheet->setCellValue('B1', 'NIK');
+      $sheet->setCellValue('C1', 'NAMA');
+      $sheet->setCellValue('D1', 'STATUS_PEGAWAI');
+      $sheet->setCellValue('E1', 'PENDIDIKAN_LAMA');
+      $sheet->setCellValue('F1', 'JABATAN_LAMA');
+      $sheet->setCellValue('G1', 'UNIT_LAMA');
+      $sheet->setCellValue('H1', 'PENDIDIKAN_BARU');
+      $sheet->setCellValue('I1', 'JABATAN_BARU');
+      $sheet->setCellValue('J1', 'UNIT_BARU');
 
       $i = 2;
       foreach ($nonasn as $row) {
-        $sheet->getCell('A'.$i)->setValueExplicit($row->NIK,\PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING2);
-        $sheet->setCellValue('B'.$i, $row->NAMA);
-        $sheet->setCellValue('C'.$i, $row->NAMA_PENDIDIKAN);
-        $sheet->setCellValue('D'.$i, $row->NAMA_JABATAN);
-        $sheet->setCellValue('E'.$i, $row->UNOR_NAMA);
-        $sheet->setCellValue('F'.$i, $row->pendidikan_baru);
-        $sheet->setCellValue('G'.$i, $row->jabatan_baru);
-        $sheet->setCellValue('H'.$i, $row->unit_penempatan_nama_baru);
-        $sheet->setCellValue('I'.$i, $row->status_nonasn);
+        $sheet->setCellValue('A'.$i, $row->ID);
+        $sheet->getCell('B'.$i)->setValueExplicit($row->NIK,\PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING2);
+        $sheet->setCellValue('C'.$i, $row->NAMA);
+        $sheet->setCellValue('D'.$i, $row->status_nonasn);
+        $sheet->setCellValue('E'.$i, $row->NAMA_PENDIDIKAN);
+        $sheet->setCellValue('F'.$i, $row->NAMA_JABATAN);
+        $sheet->setCellValue('G'.$i, $row->UNOR_NAMA);
+        $sheet->setCellValue('H'.$i, $row->pendidikan_baru);
+        $sheet->setCellValue('I'.$i, $row->jabatan_baru);
+        $sheet->setCellValue('J'.$i, $row->unit_penempatan_nama_baru);
 
         $i++;
       }
