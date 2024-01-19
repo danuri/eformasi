@@ -47,4 +47,13 @@ class NonasnModel extends Model
                                   WHERE KODE_SATKER_PARENT='$parent' GROUP BY KODE_SATKER,SATKER")->getResult();
       return $query;
     }
+
+    public function getCountChild($kode)
+    {
+      $this->db = \Config\Database::connect('default', false);
+
+      $query = $this->db->query("SELECT KODE_SATKER,SATKER, COUNT(ID) AS JUMLAH FROM nonasn
+                                  WHERE KODE_SATKER='$kode' GROUP BY KODE_SATKER,SATKER")->getResult();
+      return $query;
+    }
 }

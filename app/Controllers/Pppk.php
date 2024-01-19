@@ -17,7 +17,12 @@ class Pppk extends BaseController
     public function index()
     {
       $model = new NonasnModel;
-      $data['satker'] = $model->getCount(session('kodesatker'));
+      if(session('role') == 2){
+        $data['satker'] = $model->getCountChild(session('kodesatker'));
+      }else{
+        $data['satker'] = $model->getCount(session('kodesatker'));
+      }
+      
       return view('nonasn/index', $data);
     }
 
