@@ -22,7 +22,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'auth'          => \App\Filters\SsoAuth::class,
-        'admin'         => \App\Filters\SsoAdmin::class,
+        'satkerauth'         => \App\Filters\SatkerAuth::class,
     ];
 
     /**

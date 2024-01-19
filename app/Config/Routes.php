@@ -35,7 +35,7 @@ $routes->group("bezzeting", ["filter" => "auth"], function ($routes) {
     $routes->post('savependidikan', 'Bezzeting::savependidikan');
 });
 
-$routes->group("cpns", ["filter" => "auth"], function ($routes) {
+$routes->group("cpns", ["filter" => "satkerauth"], function ($routes) {
     $routes->get('', 'Cpns::index');
     $routes->get('sub/(:any)', 'Cpns::sub/$1');
     $routes->get('delete/(:any)', 'Cpns::delete/$1');
@@ -61,4 +61,10 @@ $routes->group("pppk", ["filter" => "auth"], function ($routes) {
     $routes->get('inject/(:any)', 'Pppk::inject/$1');
     $routes->post('inject/(:any)', 'Pppk::import/$1');
     $routes->get('rekap', 'Pppk::rekap');
+});
+
+$routes->group("users", ["filter" => "satkerauth"], function ($routes) {
+    $routes->get('', 'Users::index');
+    $routes->get('delete/(:any)', 'Users::delete/$1');
+    $routes->post('add', 'Users::add');
 });

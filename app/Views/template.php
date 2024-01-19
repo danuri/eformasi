@@ -145,21 +145,25 @@
                                 <i class="las la-tachometer-alt"></i> <span data-key="t-dashboards">Dashboards</span>
                             </a>
                         </li>
+                        <?php if(session('role') == 1){ ?>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="<?= site_url('cpns')?>">
                                 <i class="ri-profile-line"></i> <span data-key="t-dashboards">CPNS</span>
                             </a>
                         </li>
+                        <?php } ?>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="<?= site_url('pppk')?>">
                                 <i class="ri-profile-line"></i> <span data-key="t-dashboards">PPPK</span>
                             </a>
                         </li>
+                        <?php if(session('role') == 1){ ?>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="<?= site_url('rekapitulasi')?>">
-                                <i class="ri-profile-line"></i> <span data-key="t-dashboards">Rekapitulasi</span>
+                            <a class="nav-link menu-link" href="<?= site_url('users')?>">
+                                <i class="ri-profile-line"></i> <span data-key="t-dashboards">Pengguna</span>
                             </a>
                         </li>
+                        <?php } ?>
                     </ul>
                 </div>
                 <!-- Sidebar -->

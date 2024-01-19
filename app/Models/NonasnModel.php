@@ -13,7 +13,7 @@ class NonasnModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['status_pemetaan','pendidikan_baru','jabatan_baru','unit_penempatan_baru','unit_penempatan_nama_baru','status_nonasn'];
+    protected $allowedFields    = ['status_pemetaan','pendidikan_baru','jabatan_baru','unit_penempatan_baru','unit_penempatan_nama_baru','status_nonasn','UPDATED_BY'];
 
     // Dates
     protected $useTimestamps = false;

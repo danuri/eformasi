@@ -6,7 +6,7 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class SsoAdmin implements FilterInterface
+class SatkerAuth implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -25,7 +25,7 @@ class SsoAdmin implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-      if (session()->get('level') != 9)
+      if (!in_array(session()->get('role'), [1]))
       {
           return redirect()
               ->to($_ENV['SSO_SIGNIN'].'?appid='.$_ENV['SSO_APPID']);

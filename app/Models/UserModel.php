@@ -14,7 +14,7 @@ class UserModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['kodesatker','satker','admin','nama','phone','status','surat','surat_pendataan','status_pendataan','jumlah_jf','level','unorid','parent'];
+    protected $allowedFields    = ['nip','nama','no_hp','satuan_kerja','kode_satker','kode_satker_parent','unor_id','role','created_by'];
 
     // Dates
     protected $useTimestamps = true;

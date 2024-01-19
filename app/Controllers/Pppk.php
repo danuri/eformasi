@@ -113,6 +113,7 @@ class Pppk extends BaseController
         'jabatan_baru' => $this->request->getVar('jabatan'),
         'unit_penempatan_baru' => $unorid,
         'unit_penempatan_nama_baru' => $namaunor,
+        'UPDATED_BY' => session('nip'),
       ];
 
       $update = $model->update($id,$param);
@@ -162,6 +163,7 @@ class Pppk extends BaseController
           'jabatan_baru' => $jabatan,
           'unit_penempatan_baru' => $unor,
           'unit_penempatan_nama_baru' => $namaunor,
+          'UPDATED_BY' => session('nip'),
         ];
 
         $model = new NonasnModel;
