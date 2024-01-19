@@ -132,7 +132,7 @@
                   <div class="col-lg-9">
                     <select class="form-select select2" name="jabatan" id="jabatan">
                       <?php foreach ($jabatan as $row) {
-                        $select = ($row->nama_jabatan == $nonasn->pendidikan_baru)?'selected':'';
+                        $select = ($row->nama_jabatan == $nonasn->jabatan_baru)?'selected':'';
                         echo '<option value="'.$row->nama_jabatan.'" '.$select.'>'.$row->nama_jabatan.' ('.$row->group.')</option>';
                       } ?>
                     </select>
@@ -228,7 +228,7 @@
       processResults: (data, params) => {
           const results = data.map(item => {
             return {
-              id: item.kode,
+              id: item.nama,
               text: item.nama,
             };
           });
