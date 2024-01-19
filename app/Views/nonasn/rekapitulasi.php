@@ -5,11 +5,12 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0">Pemetaan Formasi Non ASN Kemenag</h4>
+                <h4 class="mb-sm-0">Rekapitulasi Usulan CPPPK</h4>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="<?= site_url('pppk/rekap')?>" class="btn btn-warning">Rekapitulasi</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
+                        <li class="breadcrumb-item active">Starter</li>
                     </ol>
                 </div>
 
@@ -23,21 +24,26 @@
             <table class="table table-bordered table-striped datatable">
               <thead>
                 <tr class="text-center">
-                  <th>SATUAN KERJA</th>
-                  <th>JUMLAH</th>
+                  <th>NO</th>
+                  <th>JABATAN</th>
+                  <th>ALOKASI</th>
+                  <th>UNIT PENEMPATAN</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                foreach ($satker as $row) {
+                $no = 1;
+                foreach ($rekap as $row) {
                 ?>
                   <tr>
-                    <td><?= $row->SATKER?></td>
-                    <td><a href="<?= site_url('pppk/data/'.encrypt($row->KODE_SATKER))?>"><?= $row->JUMLAH?></a></td>
+                    <td><?= $no;?></td>
+                    <td><?= $row->jabatan_baru;?></td>
+                    <td><?= $row->jumlah;?></td>
+                    <td><?= $row->unit_penempatan_nama_baru;?></td>
                   </tr>
-                <?php } ?>
-              </tbody>
-            </table>
+                  <?php $no++; } ?>
+                </tbody>
+              </table>
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ use App\Models\NonasnModel;
 use App\Models\PendidikanModel;
 use App\Models\JabatanModel;
 use App\Models\UnorModel;
+use App\Models\CrudModel;
 use CodeIgniter\Files\File;
 
 class Pppk extends BaseController
@@ -117,6 +118,14 @@ class Pppk extends BaseController
       $update = $model->update($id,$param);
 
       return redirect()->back()->with('message', 'Data telah diupdate');
+    }
+
+    public function rekap()
+    {
+      $crud = new CrudModel;
+      $data['rekap'] = $crud->getRekap();
+
+      return view('nonasn/rekapitulasi', $data);
     }
 
     public function import($id)

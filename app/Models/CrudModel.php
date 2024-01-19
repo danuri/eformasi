@@ -79,28 +79,8 @@ class CrudModel extends Model
       public function getRekap()
       {
         $kodesatker = session('kodesatker');
-        $query = $this->db->query("SELECT
-                                  	a.*,
-                                  	b.nama_jabatan AS sat2,
-                                  	c.nama_jabatan AS sat3,
-                                  	d.nama_jabatan AS sat4
-                                  FROM
-                                  	usulan_formasi AS a
-                                  	LEFT JOIN
-                                  	usulan_formasi AS b
-                                  	ON
-                                  		a.kode_parent = b.kode_satker
-                                  	LEFT JOIN
-                                  	usulan_formasi AS c
-                                  	ON
-                                  		b.kode_parent = c.kode_satker
-                                  	LEFT JOIN
-                                  	usulan_formasi d
-                                  	ON
-                                  		c.kode_parent = d.kode_satker
-                                  WHERE
-                                  	a.posisi = '5b' AND
-                                  	(a.usul_pppk > 0 OR a.usul_pns > 0) AND a.created_by='$kodesatker'")->getResult();
+        $query = $this->db->query("SELECT jabatan_baru,unit_penempatan_nama_baru, COUNT(*) AS jumlah FROM nonasn WHERE jabatan_baru IS NOT NULL AND KODE_SATKER_PARENT='$kodesatker'
+                                    GROUP BY jabatan_baru, unit_penempatan_nama_baru")->getResult();
         return $query;
       }
 
