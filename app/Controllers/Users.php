@@ -21,6 +21,14 @@ class Users extends BaseController
 
     public function add()
     {
+
+      if (! $this->validate([
+          'nip' => "required|is_unique[users.nip]",
+          'nama' => "required"
+        ])) {
+            return $this->response->setJSON(['message'=>'Pastikan data sesuai']);
+        }
+
       $model = new UserModel;
 
       $param = [
