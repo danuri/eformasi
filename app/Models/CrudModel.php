@@ -79,7 +79,7 @@ class CrudModel extends Model
       public function getRekapPppk()
       {
         $kodesatker = session('kodesatker');
-        $query = $this->db->query("SELECT jabatan_baru,unit_penempatan_nama_baru, COUNT(*) AS jumlah FROM nonasn WHERE status_pegawai='NON ASN' AND status_nonasn='Aktif' AND jabatan_baru IS NOT NULL AND KODE_SATKER_PARENT='$kodesatker'
+        $query = $this->db->query("SELECT jabatan_baru,unit_penempatan_nama_baru, COUNT(*) AS jumlah FROM nonasn WHERE status_nonasn='NON ASN' AND status_pemetaan='Aktif' AND jabatan_baru IS NOT NULL AND KODE_SATKER_PARENT='$kodesatker'
                                     GROUP BY jabatan_baru, unit_penempatan_nama_baru")->getResult();
         return $query;
       }
@@ -87,7 +87,7 @@ class CrudModel extends Model
       public function getRekapCpns()
       {
         $kodesatker = session('kodesatker');
-        $query = $this->db->query("SELECT jabatan_baru,unit_penempatan_nama_baru, COUNT(*) AS jumlah FROM nonasn WHERE status_pegawai='NON ASN' AND status_nonasn='Aktif' AND jabatan_baru IS NOT NULL AND KODE_SATKER_PARENT='$kodesatker'
+        $query = $this->db->query("SELECT jabatan_baru,unit_penempatan_nama_baru, COUNT(*) AS jumlah FROM nonasn WHERE status_nonasn='NON ASN' AND status_pemetaan='Aktif' AND jabatan_baru IS NOT NULL AND KODE_SATKER_PARENT='$kodesatker'
                                     GROUP BY jabatan_baru, unit_penempatan_nama_baru")->getResult();
         return $query;
       }
