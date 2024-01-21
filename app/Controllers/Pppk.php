@@ -22,7 +22,7 @@ class Pppk extends BaseController
       }else{
         $data['satker'] = $model->getCount(session('kodesatker'));
       }
-      
+
       return view('nonasn/index', $data);
     }
 
@@ -129,7 +129,7 @@ class Pppk extends BaseController
     public function rekap()
     {
       $crud = new CrudModel;
-      $data['rekap'] = $crud->getRekap();
+      $data['rekap'] = $crud->getRekapPppk();
 
       return view('nonasn/rekapitulasi', $data);
     }
