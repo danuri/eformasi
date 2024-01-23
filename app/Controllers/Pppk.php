@@ -10,6 +10,7 @@ use App\Models\PendidikanModel;
 use App\Models\JabatanModel;
 use App\Models\UnorModel;
 use App\Models\CrudModel;
+use App\Models\NonasnTambahanModel;
 use CodeIgniter\Files\File;
 
 class Pppk extends BaseController
@@ -255,5 +256,12 @@ class Pppk extends BaseController
       header('Content-Disposition: attachment; filename="Data_nonasn_'.$kode.'.xlsx"');
       $writer->save('php://output');
       exit();
+    }
+
+    public function tambahan()
+    {
+      $model = new NonasnTambahanModel;
+      $data['nonasn'] = $model->where(['kode_satker'=>session('kodesatker')])->findAll();
+      return view('nonasn/tambahan', $data);
     }
 }

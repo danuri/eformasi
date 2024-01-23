@@ -157,6 +157,11 @@
                                 <i class="ri-profile-line"></i> <span data-key="t-dashboards">PPPK</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="<?= site_url('pppk/tambahan')?>">
+                                <i class="ri-profile-line"></i> <span data-key="t-dashboards">PPPK Tambahan</span>
+                            </a>
+                        </li>
                         <?php if(session('role') == 1){ ?>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="<?= site_url('users')?>">

@@ -62,6 +62,8 @@ $routes->group("pppk", ["filter" => "auth"], function ($routes) {
     $routes->get('inject/(:any)', 'Pppk::inject/$1');
     $routes->post('inject/(:any)', 'Pppk::import/$1');
     $routes->get('rekap', 'Pppk::rekap');
+    
+    $routes->get('tambahan', 'Pppk::tambahan');
 });
 
 $routes->group("users", ["filter" => "satkerauth"], function ($routes) {
