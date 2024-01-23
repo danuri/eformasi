@@ -20,6 +20,14 @@ class Cpns extends BaseController
         return view('cpns', $data);
     }
 
+    public function getjabatan($id)
+    {
+      $jabm = new UsulanJabatanModel;
+      $jabatan = $jabm->find($id);
+
+      return $this->response->setJSON($jabatan);
+    }
+
     public function sub($id)
     {
         $jabm = new JabatanModel;
@@ -54,6 +62,33 @@ class Cpns extends BaseController
 
         return $this->response->setJSON(['message'=>'ok']);
       }
+
+    }
+
+    public function save()
+    {
+      $model = new UsulanJabatanModel;
+
+      $id = $this->request->getVar('id');
+      $unorid = $this->request->getVar('unor_id');
+      $jabatan = $this->request->getVar('jabatan');
+
+      // $cek = $model->where(['unor_id'=>$unorid,'jabatan'=>$jabatan])->first();
+
+      // if($cek){
+      //   return $this->response->setJSON(['message'=>'Terdapat duplikasi']);
+      // }else{
+        $param = [
+          'jabatan' => $jabatan,
+          'bezzeting' => $this->request->getVar('bezzeting'),
+          'kebutuhan' => $this->request->getVar('kebutuhan')
+        ];
+
+        $update = $model->set($param)->where(['id' => $id,'unor_id'=>$unorid])->update();
+
+        session()->setFlashdata('message', 'Data telah diupdate');
+        return $this->response->setJSON(['message'=>'ok']);
+      // }
 
     }
 

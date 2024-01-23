@@ -41,12 +41,8 @@ $routes->group("cpns", ["filter" => "satkerauth"], function ($routes) {
     $routes->get('delete/(:any)', 'Cpns::delete/$1');
     $routes->post('insert', 'Cpns::insert');
     $routes->get('rekap', 'Cpns::rekap');
-    $routes->post('edit/(:any)', 'Pppk::editsave/$1');
-    $routes->get('status/(:any)/(:any)', 'Pppk::status/$1/$2');
-    $routes->get('statuspegawai/(:any)/(:any)', 'Pppk::statuspegawai/$1/$2');
-    $routes->get('search', 'Pppk::searchunor');
-    $routes->get('searchpendidikan', 'Pppk::searchpendidikan');
-    $routes->get('export/(:any)', 'Pppk::export/$1');
+    $routes->get('getjabatan/(:any)', 'Cpns::getjabatan/$1');
+    $routes->post('save', 'Cpns::save');
 });
 
 $routes->group("pppk", ["filter" => "auth"], function ($routes) {
@@ -62,7 +58,7 @@ $routes->group("pppk", ["filter" => "auth"], function ($routes) {
     $routes->get('inject/(:any)', 'Pppk::inject/$1');
     $routes->post('inject/(:any)', 'Pppk::import/$1');
     $routes->get('rekap', 'Pppk::rekap');
-    
+
     $routes->get('tambahan', 'Pppk::tambahan');
 });
 

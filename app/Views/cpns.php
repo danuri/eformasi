@@ -40,13 +40,13 @@
                   <?php
                   $jabatans = getJabatan($row->id);
 
-                  foreach ($jabatans as $row) {?>
+                  foreach ($jabatans as $rowj) {?>
                     <tr>
                       <td></td>
-                      <td><?= $row->jabatan?></td>
-                      <td><?= $row->bezzeting?></td>
-                      <td><?= $row->kebutuhan?></td>
-                      <td><a href="javascript:;" class="badge text-bg-warning" onclick="edit()" title="Edit Jumlah"><i class="bx bx-pencil"></i></a> <a href="<?= site_url('cpns/delete/'.encrypt($row->id)) ?>" class="badge text-bg-danger" onclick="return confirm('Data akan dihapus?')" title="Hapus Data"><i class="bx bx-trash"></i></a></td>
+                      <td><?= $rowj->jabatan?></td>
+                      <td><?= $rowj->bezzeting?></td>
+                      <td><?= $rowj->kebutuhan?></td>
+                      <td><a href="javascript:;" class="badge text-bg-warning" onclick="editjabatan(<?= $rowj->id?>)" title="Edit"><i class="bx bx-pencil"></i></a> <a href="<?= site_url('cpns/delete/'.encrypt($rowj->id)) ?>" class="badge text-bg-danger" onclick="return confirm('Data akan dihapus?')" title="Hapus Data"><i class="bx bx-trash"></i></a></td>
                     </tr>
                   <?php } ?>
                 <?php } ?>
@@ -97,6 +97,47 @@
     </div>
   </div>
 </div>
+
+<div id="editmodal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" data-bs-backdrop="static" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header p-3 bg-soft-info">
+        <h5 class="modal-title" id="myModalLabel">Formulir Jabatan</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="" action="" method="post">
+          <div class="mb-3">
+            <label for="jabatan" class="form-label">Nama Jabatan</label>
+            <select class="form-select" name="jabatan" id="jabatan2">
+              <?php foreach ($jabatan as $row) {
+                echo '<option value="'.$row->nama_jabatan.'">'.$row->nama_jabatan.'</option>';
+              } ?>
+            </select>
+            <input type="hidden" name="id" id="id2" value="">
+            <input type="hidden" name="unorid" id="unorid2" value="">
+          </div>
+          <div class="mb-3">
+            <label for="bezzeting" class="form-label">Bezzeting/Jumlah Existing pada Jabatan</label>
+            <input type="number" class="form-control" name="bezzeting" id="bezzeting2" value="">
+          </div>
+          <div class="mb-3">
+            <label for="kebutuhan" class="form-label">Kebutuhan</label>
+            <input type="number" class="form-control" name="kebutuhan" id="kebutuhan2" value="">
+          </div>
+          <div class="mb-3">
+            <label for="kebutuhan" class="form-label">Jumlah Ideal Pegawai</label>
+            <input type="number" class="form-control" name="ideal" id="ideal2" value="" disabled>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="save()">Simpan</button>
+      </div>
+    </div>
+  </div>
+</div>
 <?= $this->endSection() ?>
 
 <?= $this->section('script') ?>
@@ -120,6 +161,20 @@ $(document).ready(function() {
     var keb = $('#kebutuhan').val();
     var ideal = parseInt(bezz) + parseInt(keb);
     $('#ideal').val(ideal);
+  });
+
+  $('#bezzeting2').on('keyup',function(event) {
+    var bezz = $('#bezzeting2').val();
+    var keb = $('#kebutuhan2').val();
+    var ideal = parseInt(bezz) + parseInt(keb);
+    $('#ideal2').val(ideal);
+  });
+
+  $('#kebutuhan2').on('keyup',function(event) {
+    var bezz = $('#bezzeting2').val();
+    var keb = $('#kebutuhan2').val();
+    var ideal = parseInt(bezz) + parseInt(keb);
+    $('#ideal2').val(ideal);
   });
 });
 
@@ -145,6 +200,46 @@ function insert() {
   .catch(function (error) {
     console.log(error);
   });
+}
+
+function save() {
+  axios.post('<?= site_url()?>/cpns/save', {
+    id: $('#id2').val(),
+    unor_id: $('#unorid2').val(),
+    jabatan: $('#jabatan2').val(),
+    bezzeting: $("#bezzeting2").val(),
+    kebutuhan: $('#kebutuhan2').val()
+  })
+  .then(function (response) {
+    if(response.data.message == 'ok'){
+      location.reload();
+    }else{
+      alert(response.data.message);
+    }
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
+function editjabatan(id) {
+  axios.get('<?= site_url()?>cpns/getjabatan/'+id)
+  .then(function (response) {
+    $('#jabatan2').val(response.data.jabatan);
+    $('#bezzeting2').val(response.data.bezzeting);
+    $('#kebutuhan2').val(response.data.kebutuhan);
+    $('#unorid2').val(response.data.unor_id);
+    $('#id2').val(response.data.id);
+    $('#ideal2').val(parseInt(response.data.bezzeting) + parseInt(response.data.kebutuhan));
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .finally(function () {
+    // always executed
+  });
+  $('#editmodal').modal('show');
 }
 </script>
 <?= $this->endSection() ?>
