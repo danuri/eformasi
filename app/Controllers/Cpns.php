@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\UnorStrukturModel;
 use App\Models\JabatanModel;
 use App\Models\UsulanJabatanModel;
+use App\Models\CrudModel;
 
 class Cpns extends BaseController
 {
@@ -54,6 +55,14 @@ class Cpns extends BaseController
         return $this->response->setJSON(['message'=>'ok']);
       }
 
+    }
+
+    public function rekap()
+    {
+      $crud = new CrudModel;
+      $data['rekap'] = $crud->getRekapCpns();
+
+      return view('cpns_rekapitulasi', $data);
     }
 
     public function delete($id)

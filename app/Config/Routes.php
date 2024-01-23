@@ -40,13 +40,13 @@ $routes->group("cpns", ["filter" => "satkerauth"], function ($routes) {
     $routes->get('sub/(:any)', 'Cpns::sub/$1');
     $routes->get('delete/(:any)', 'Cpns::delete/$1');
     $routes->post('insert', 'Cpns::insert');
+    $routes->get('rekap', 'Cpns::rekap');
     $routes->post('edit/(:any)', 'Pppk::editsave/$1');
     $routes->get('status/(:any)/(:any)', 'Pppk::status/$1/$2');
     $routes->get('statuspegawai/(:any)/(:any)', 'Pppk::statuspegawai/$1/$2');
     $routes->get('search', 'Pppk::searchunor');
     $routes->get('searchpendidikan', 'Pppk::searchpendidikan');
     $routes->get('export/(:any)', 'Pppk::export/$1');
-    $routes->get('rekap', 'Pppk::rekap');
 });
 
 $routes->group("pppk", ["filter" => "auth"], function ($routes) {

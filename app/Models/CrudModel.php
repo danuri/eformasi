@@ -87,8 +87,20 @@ class CrudModel extends Model
       public function getRekapCpns()
       {
         $kodesatker = session('kodesatker');
-        $query = $this->db->query("SELECT jabatan_baru,unit_penempatan_nama_baru, COUNT(*) AS jumlah FROM nonasn WHERE status_nonasn='NON ASN' AND status_pemetaan='Aktif' AND jabatan_baru IS NOT NULL AND KODE_SATKER_PARENT='$kodesatker'
-                                    GROUP BY jabatan_baru, unit_penempatan_nama_baru")->getResult();
+        $query = $this->db->query("SELECT
+                                  	tr_usulan_jabatan.unor_id,
+                                  	ref_unor.nama,
+                                  	tr_usulan_jabatan.jabatan,
+                                  	SUM(tr_usulan_jabatan.bezzeting) AS jumlahbez,
+                                  	SUM(tr_usulan_jabatan.kebutuhan) AS jumlahkeb
+                                  FROM
+                                  	tr_usulan_jabatan
+                                  	INNER JOIN
+                                  	ref_unor
+                                  	ON
+                                  		tr_usulan_jabatan.unor_id = ref_unor.id
+                                  WHERE created_by='$kodesatker'
+                                  GROUP BY tr_usulan_jabatan.unor_id, tr_usulan_jabatan.jabatan")->getResult();
         return $query;
       }
 
