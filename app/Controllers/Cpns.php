@@ -23,9 +23,18 @@ class Cpns extends BaseController
     public function getjabatan($id)
     {
       $jabm = new UsulanJabatanModel;
-      $jabatan = $jabm->find($id);
+      $data = (array) $jabm->find($id);
 
-      return $this->response->setJSON($jabatan);
+      $data['pends'] = [];
+
+      if($data['pendidikan']){
+        $pends = unserialize($data['pendidikan']);
+        // $pends = implode(",", $pends);
+        $data['pends'] = $pends;
+      }
+
+
+      return $this->response->setJSON($data);
     }
 
     public function sub($id)
@@ -44,6 +53,7 @@ class Cpns extends BaseController
 
       $unorid = $this->request->getVar('unor_id');
       $jabatan = $this->request->getVar('jabatan');
+      $pendidikan = $this->request->getVar('pendidikan');
 
       $cek = $model->where(['unor_id'=>$unorid,'jabatan'=>$jabatan])->first();
 
@@ -53,6 +63,7 @@ class Cpns extends BaseController
         $param = [
           'unor_id' => $unorid,
           'jabatan' => $jabatan,
+          'pendidikan' => serialize($pendidikan),
           'bezzeting' => $this->request->getVar('bezzeting'),
           'kebutuhan' => $this->request->getVar('kebutuhan'),
           'created_by' => session('kodesatker'),
@@ -72,6 +83,7 @@ class Cpns extends BaseController
       $id = $this->request->getVar('id');
       $unorid = $this->request->getVar('unor_id');
       $jabatan = $this->request->getVar('jabatan');
+      $pendidikan = $this->request->getVar('pendidikan');
 
       // $cek = $model->where(['unor_id'=>$unorid,'jabatan'=>$jabatan])->first();
 
@@ -80,6 +92,7 @@ class Cpns extends BaseController
       // }else{
         $param = [
           'jabatan' => $jabatan,
+          'pendidikan' => serialize($pendidikan),
           'bezzeting' => $this->request->getVar('bezzeting'),
           'kebutuhan' => $this->request->getVar('kebutuhan')
         ];

@@ -12,7 +12,7 @@ class UsulanJabatanModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['unor_id','jabatan','bezzeting','kebutuhan','created_by'];
+    protected $allowedFields    = ['unor_id','jabatan','pendidikan','bezzeting','kebutuhan','created_by'];
 
     // Dates
     protected $useTimestamps = true;

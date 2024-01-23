@@ -26,6 +26,7 @@
                 <tr class="text-center">
                   <th>NO</th>
                   <th>JABATAN</th>
+                  <th>PENDIDIKAN</th>
                   <th>ALOKASI</th>
                   <th>UNIT PENEMPATAN</th>
                 </tr>
@@ -38,6 +39,12 @@
                   <tr>
                     <td><?= $no;?></td>
                     <td><?= $row->jabatan;?></td>
+                    <td><?php
+                    $p = (object) unserialize($row->pendidikan);
+                    foreach ($p as $r) {
+                      echo $r.";";
+                    }
+                    ?></td>
                     <td><?= $row->jumlahkeb;?></td>
                     <td><?= $row->nama;?></td>
                   </tr>

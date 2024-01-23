@@ -91,6 +91,7 @@ class CrudModel extends Model
                                   	tr_usulan_jabatan.unor_id,
                                   	ref_unor.nama,
                                   	tr_usulan_jabatan.jabatan,
+                                  	tr_usulan_jabatan.pendidikan,
                                   	SUM(tr_usulan_jabatan.bezzeting) AS jumlahbez,
                                   	SUM(tr_usulan_jabatan.kebutuhan) AS jumlahkeb
                                   FROM
@@ -100,7 +101,7 @@ class CrudModel extends Model
                                   	ON
                                   		tr_usulan_jabatan.unor_id = ref_unor.id
                                   WHERE created_by='$kodesatker'
-                                  GROUP BY tr_usulan_jabatan.unor_id, tr_usulan_jabatan.jabatan")->getResult();
+                                  GROUP BY tr_usulan_jabatan.unor_id, tr_usulan_jabatan.jabatan, tr_usulan_jabatan.pendidikan")->getResult();
         return $query;
       }
 

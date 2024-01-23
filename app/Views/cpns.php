@@ -23,8 +23,8 @@
             <table class="table table-bordered table-striped ">
               <thead>
                 <tr class="text-center">
-                  <th>Unit Organisasi</th>
-                  <th>Jabatan</th>
+                  <th>Unit Organisasi/Jabatan</th>
+                  <th>Pendidikan</th>
                   <th>Bezzeting</th>
                   <th>Kebutuhan</th>
                   <th>Opsi</th>
@@ -42,8 +42,15 @@
 
                   foreach ($jabatans as $rowj) {?>
                     <tr>
-                      <td></td>
                       <td><?= $rowj->jabatan?></td>
+                      <td>
+                        <?php
+                        $p = (object) unserialize($rowj->pendidikan);
+                        foreach ($p as $r) {
+                          echo $r.";";
+                        }
+                        ?>
+                      </td>
                       <td><?= $rowj->bezzeting?></td>
                       <td><?= $rowj->kebutuhan?></td>
                       <td><a href="javascript:;" class="badge text-bg-warning" onclick="editjabatan(<?= $rowj->id?>)" title="Edit"><i class="bx bx-pencil"></i></a> <a href="<?= site_url('cpns/delete/'.encrypt($rowj->id)) ?>" class="badge text-bg-danger" onclick="return confirm('Data akan dihapus?')" title="Hapus Data"><i class="bx bx-trash"></i></a></td>
@@ -75,6 +82,11 @@
               } ?>
             </select>
             <input type="hidden" name="unorid" id="unorid" value="">
+          </div>
+          <div class="mb-3">
+            <label for="bezzeting" class="form-label">Pendidikan</label>
+            <select class="form-select" name="pendidikan[]" id="pendidikan" multiple="multiple">
+            </select>
           </div>
           <div class="mb-3">
             <label for="bezzeting" class="form-label">Bezzeting/Jumlah Existing pada Jabatan</label>
@@ -116,6 +128,11 @@
             </select>
             <input type="hidden" name="id" id="id2" value="">
             <input type="hidden" name="unorid" id="unorid2" value="">
+          </div>
+          <div class="mb-3">
+            <label for="bezzeting" class="form-label">Pendidikan</label>
+            <select class="form-select" name="pendidikan[]" id="pendidikan2" multiple="multiple">
+            </select>
           </div>
           <div class="mb-3">
             <label for="bezzeting" class="form-label">Bezzeting/Jumlah Existing pada Jabatan</label>
@@ -176,6 +193,70 @@ $(document).ready(function() {
     var ideal = parseInt(bezz) + parseInt(keb);
     $('#ideal2').val(ideal);
   });
+
+  $('#pendidikan').select2({
+    ajax: {
+      url: '<?= site_url() ?>pppk/searchpendidikan',
+      data: function (params) {
+        var query = {
+          search: params.term,
+          type: 'public'
+        }
+
+        return query;
+      },
+      processResults: function (data) {
+        return {
+          results: data
+        };
+      },
+      processResults: (data, params) => {
+          const results = data.map(item => {
+            return {
+              id: item.nama,
+              text: item.nama,
+            };
+          });
+          return {
+            results: results,
+          }
+        },
+    },
+    placeholder: 'Cari Pendidikan',
+    minimumInputLength: 5,
+  });
+
+  $('#pendidikan2').select2({
+    ajax: {
+      url: '<?= site_url() ?>pppk/searchpendidikan',
+      data: function (params) {
+        var query = {
+          search: params.term,
+          type: 'public'
+        }
+
+        return query;
+      },
+      processResults: function (data) {
+        return {
+          results: data
+        };
+      },
+      processResults: (data, params) => {
+          const results = data.map(item => {
+            return {
+              id: item.nama,
+              text: item.nama,
+            };
+          });
+          return {
+            results: results,
+          }
+        },
+    },
+    placeholder: 'Cari Pendidikan',
+    minimumInputLength: 5,
+  });
 });
 
 function addchild(id) {
@@ -187,6 +268,7 @@ function insert() {
   axios.post('<?= site_url()?>/cpns/insert', {
     unor_id: $('#unorid').val(),
     jabatan: $('#jabatan').val(),
+    pendidikan: $('#pendidikan').val(),
     bezzeting: $("#bezzeting").val(),
     kebutuhan: $('#kebutuhan').val()
   })
@@ -207,6 +289,7 @@ function save() {
     id: $('#id2').val(),
     unor_id: $('#unorid2').val(),
     jabatan: $('#jabatan2').val(),
+    pendidikan: $('#pendidikan2').val(),
     bezzeting: $("#bezzeting2").val(),
     kebutuhan: $('#kebutuhan2').val()
   })
@@ -223,6 +306,8 @@ function save() {
 }
 
 function editjabatan(id) {
+  $('#pendidikan2').html("");
+  $('#pendidikan2').val(null).trigger('change');
   axios.get('<?= site_url()?>cpns/getjabatan/'+id)
   .then(function (response) {
     $('#jabatan2').val(response.data.jabatan);
@@ -231,6 +316,49 @@ function editjabatan(id) {
     $('#unorid2').val(response.data.unor_id);
     $('#id2').val(response.data.id);
     $('#ideal2').val(parseInt(response.data.bezzeting) + parseInt(response.data.kebutuhan));
+
+    pendidikan = response.data.pends;
+    if(pendidikan){
+      $.each(pendidikan, function( index, value ) {
+        // console.log( index + ": " + value );
+
+        let optionHTML = '<option value="'+value+'">'+value+'</option>';
+        $('#pendidikan2').append(optionHTML);
+      });
+
+    }
+
+    $('#pendidikan2').select2({
+      ajax: {
+        url: '<?= site_url() ?>pppk/searchpendidikan',
+        data: function (params) {
+          var query = {
+            search: params.term,
+            type: 'public'
+          }
+
+          return query;
+        },
+        processResults: function (data) {
+          return {
+            results: data
+          };
+        },
+        processResults: (data, params) => {
+            const results = data.map(item => {
+              return {
+                id: item.nama,
+                text: item.nama,
+              };
+            });
+            return {
+              results: results,
+            }
+          },
+      },
+      placeholder: 'Cari Pendidikan',
+      minimumInputLength: 5,
+    }).val(pendidikan).trigger("change")
   })
   .catch(function (error) {
     // handle error
