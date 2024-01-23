@@ -46,6 +46,7 @@ class Cpns extends BaseController
           'jabatan' => $jabatan,
           'bezzeting' => $this->request->getVar('bezzeting'),
           'kebutuhan' => $this->request->getVar('kebutuhan'),
+          'created_by' => session('kodesatker'),
         ];
 
         $insert = $model->insert($param);

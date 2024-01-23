@@ -9,8 +9,7 @@
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Formasi</a></li>
-                        <li class="breadcrumb-item active">Mapping</li>
+                        <li class="breadcrumb-item"><a href="<?= site_url('cpns/rekap')?>" class="btn btn-warning">Rekapitulasi</a></li>
                     </ol>
                 </div>
 

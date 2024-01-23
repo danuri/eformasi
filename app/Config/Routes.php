@@ -46,6 +46,7 @@ $routes->group("cpns", ["filter" => "satkerauth"], function ($routes) {
     $routes->get('search', 'Pppk::searchunor');
     $routes->get('searchpendidikan', 'Pppk::searchpendidikan');
     $routes->get('export/(:any)', 'Pppk::export/$1');
+    $routes->get('rekap', 'Pppk::rekap');
 });
 
 $routes->group("pppk", ["filter" => "auth"], function ($routes) {
