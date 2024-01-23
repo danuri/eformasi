@@ -262,6 +262,56 @@ class Pppk extends BaseController
     {
       $model = new NonasnTambahanModel;
       $data['nonasn'] = $model->where(['kode_satker'=>session('kodesatker')])->findAll();
+
+      $jabm = new JabatanModel;
+      $data['jabatan'] = $jabm->findAll();
+
       return view('nonasn/tambahan', $data);
+    }
+
+    public function tambahansave()
+    {
+      if (! $this->validate([
+            'nik'  => 'required',
+            'nama'  => 'required',
+            'pendidikan'  => 'required',
+            'jabatan'  => 'required',
+            'unor'  => 'required'
+        ])) {
+
+          return redirect()->back()->with('message', 'Data harus lengkap');
+        }
+
+      $munor = new UnorModel;
+      $unorid = $this->request->getVar('unor');
+      $namaunor = $munor->find($unorid)->nama;
+
+      $param = [
+        'nik' => $this->request->getVar('nik'),
+        'nama' => $this->request->getVar('nama'),
+        'pendidikan' => $this->request->getVar('pendidikan'),
+        'jabatan' => $this->request->getVar('jabatan'),
+        'unit_id' => $this->request->getVar('unor'),
+        'unit_nama' => $namaunor,
+        'kode_satker' => session('kodesatker'),
+        'created_by' => session('nip'),
+      ];
+
+      $model = new NonasnTambahanModel;
+
+      $insert = $model->insert($param);
+
+      return redirect()->back()->with('message', 'Data telah ditambahkan');
+    }
+
+    public function tambahandelete($id)
+    {
+      $id = decrypt($id);
+
+      $model = new NonasnTambahanModel;
+
+      $delete = $model->delete($id);
+
+      return redirect()->back()->with('message', 'Data telah dihapus');
     }
 }

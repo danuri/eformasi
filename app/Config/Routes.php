@@ -60,6 +60,8 @@ $routes->group("pppk", ["filter" => "auth"], function ($routes) {
     $routes->get('rekap', 'Pppk::rekap');
 
     $routes->get('tambahan', 'Pppk::tambahan');
+    $routes->post('tambahan', 'Pppk::tambahansave');
+    $routes->get('tambahan/delete/(:any)', 'Pppk::tambahandelete/$1');
 });
 
 $routes->group("users", ["filter" => "satkerauth"], function ($routes) {
