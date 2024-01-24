@@ -169,6 +169,15 @@
                             </a>
                         </li>
                         <?php } ?>
+                        <li class="nav-item nav-item-dropdown-lg dropdown">
+              						<a href="#" class="nav-link dropdown-toggle rounded" data-bs-toggle="dropdown">
+              							<i class="ri-profile-line"></i> <span data-key="t-dashboards">Referensi</span>
+              						</a>
+
+              						<div class="dropdown-menu">
+              							<a href="<?= site_url('referensi/jabatan/pelaksana')?>" class="dropdown-item rounded">Jabatan Pelaksana</a>
+              						</div>
+              					</li>
                     </ul>
                 </div>
                 <!-- Sidebar -->

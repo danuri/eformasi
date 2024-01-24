@@ -64,6 +64,10 @@ $routes->group("pppk", ["filter" => "auth"], function ($routes) {
     $routes->get('tambahan/delete/(:any)', 'Pppk::tambahandelete/$1');
 });
 
+$routes->group("referensi", ["filter" => "auth"], function ($routes) {
+    $routes->get('jabatan/pelaksana', 'Referensi::jabatanpelaksana');
+});
+
 $routes->group("users", ["filter" => "satkerauth"], function ($routes) {
     $routes->get('', 'Users::index');
     $routes->get('delete/(:any)', 'Users::delete/$1');
