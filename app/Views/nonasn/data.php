@@ -37,7 +37,11 @@
               <tbody>
                 <?php
                 foreach ($nonasn as $row) {
-                  $status = 'Belum Dilengkapi';
+                  if($row->jabatan_baru == null){
+                    $status = 'Sudah Dilengkapi';
+                  }else{
+                    $status = 'Belum Dilengkapi';
+                  }
                 ?>
                   <tr>
                     <td><?= $row->NIK?></td>
