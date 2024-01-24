@@ -26,6 +26,7 @@
                 <tr class="text-center">
                   <th>JABATAN</th>
                   <th>PENDIDIKAN</th>
+                  <th>DESKRIPSI</th>
                   <th>PNS</th>
                   <th>PPPK</th>
                 </tr>
@@ -38,6 +39,7 @@
                   <tr>
                     <td><?= $row->nama_jabatan;?></td>
                     <td><?= $row->pendidikan;?></td>
+                    <td><?= $row->deskripsi;?></td>
                     <td><?= $row->cpns;?></td>
                     <td><?= $row->pppk;?></td>
                   </tr>
