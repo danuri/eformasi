@@ -18,6 +18,9 @@
     </div>
     <div class="row">
       <div class="col-12">
+        <div class="alert alert-success border-0 alert-dismissible fade show">
+  				Untuk Jabatan Pelaksana, silahkan melihat referensi jabatan pelaksan. <a href="<?= site_url('referensi/jabatan/pelaksana')?>" target="_blank">Klik disini</a>
+		    </div>
         <div class="card">
           <div class="card-body">
             <table class="table table-bordered table-striped ">
