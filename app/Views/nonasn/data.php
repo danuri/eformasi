@@ -38,9 +38,9 @@
                 <?php
                 foreach ($nonasn as $row) {
                   if($row->jabatan_baru == null){
-                    $status = 'Sudah Dilengkapi';
-                  }else{
                     $status = 'Belum Dilengkapi';
+                  }else{
+                    $status = 'Sudah Dilengkapi';
                   }
                 ?>
                   <tr>
