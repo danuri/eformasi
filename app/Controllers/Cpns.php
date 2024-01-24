@@ -53,9 +53,9 @@ class Cpns extends BaseController
 
       $unorid = $this->request->getVar('unor_id');
       $jabatan = $this->request->getVar('jabatan');
-      $pendidikan = $this->request->getVar('pendidikan');
+      $pendidikan = serialize($this->request->getVar('pendidikan'));
 
-      $cek = $model->where(['unor_id'=>$unorid,'jabatan'=>$jabatan])->first();
+      $cek = $model->where(['unor_id'=>$unorid,'jabatan'=>$jabatan,'pendidikan'=>$pendidikan])->first();
 
       if($cek){
         return $this->response->setJSON(['message'=>'Terdapat duplikasi']);
@@ -63,7 +63,7 @@ class Cpns extends BaseController
         $param = [
           'unor_id' => $unorid,
           'jabatan' => $jabatan,
-          'pendidikan' => serialize($pendidikan),
+          'pendidikan' => $pendidikan,
           'bezzeting' => $this->request->getVar('bezzeting'),
           'kebutuhan' => $this->request->getVar('kebutuhan'),
           'created_by' => session('kodesatker'),
