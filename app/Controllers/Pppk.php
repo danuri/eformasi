@@ -218,7 +218,6 @@ class Pppk extends BaseController
     public function export($kode)
     {
       if($kode == 0){
-        $kode = decrypt($kode);
         $model = new NonasnModel;
         $nonasn = $model->where(['KODE_SATKER_PARENT'=>$kode])->findAll();
       }else{
