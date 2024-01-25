@@ -46,4 +46,14 @@ class Users extends BaseController
 
       return $this->response->setJSON(['message'=>'ok']);
     }
+
+    public function delete($id)
+    {
+      $id = decrypt($id);
+
+      $model = new UserModel;
+      $delete = $model->delete($id);
+      session()->setFlashdata('message', 'Pengguna berhasil dihapus');
+      return redirect()->back();
+    }
 }
