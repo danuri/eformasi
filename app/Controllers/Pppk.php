@@ -261,7 +261,8 @@ class Pppk extends BaseController
     public function tambahan()
     {
       $model = new NonasnTambahanModel;
-      $data['nonasn'] = $model->where(['kode_satker'=>session('kodesatker')])->findAll();
+      $kodesatker = kodekepala(session('kodesatker'));
+      $data['nonasn'] = $model->like('kode_satker', $kodesatker, 'after')->findAll();
 
       $jabm = new JabatanModel;
       $data['jabatan'] = $jabm->findAll();
