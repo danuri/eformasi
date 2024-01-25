@@ -219,7 +219,7 @@ class Pppk extends BaseController
     {
       if($kode == 0){
         $model = new NonasnModel;
-        $nonasn = $model->where(['KODE_SATKER_PARENT'=>$kode])->findAll();
+        $nonasn = $model->where(['KODE_SATKER_PARENT'=>session('kodesatker')])->findAll();
       }else{
         $kode = decrypt($kode);
         $model = new NonasnModel;
