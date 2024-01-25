@@ -10,6 +10,7 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="<?= site_url('pppk/rekap')?>" class="btn btn-warning">Rekapitulasi</a></li>
+                        <li class="breadcrumb-item"><a href="<?= site_url('pppk/export/0')?>" class="btn btn-success">Export Excel</a></li>
                     </ol>
                 </div>
 

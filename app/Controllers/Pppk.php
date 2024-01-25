@@ -217,9 +217,15 @@ class Pppk extends BaseController
 
     public function export($kode)
     {
-      $kode = decrypt($kode);
-      $model = new NonasnModel;
-      $nonasn = $model->where(['KODE_SATKER'=>$kode,'status_nonasn'=>'NON ASN'])->findAll();
+      if($kode == 0){
+        $kode = decrypt($kode);
+        $model = new NonasnModel;
+        $nonasn = $model->where(['KODE_SATKER_PARENT'=>$kode])->findAll();
+      }else{
+        $kode = decrypt($kode);
+        $model = new NonasnModel;
+        $nonasn = $model->where(['KODE_SATKER'=>$kode])->findAll();
+      }
 
       $spreadsheet = new Spreadsheet();
       $sheet = $spreadsheet->getActiveSheet();
