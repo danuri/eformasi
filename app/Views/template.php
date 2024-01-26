@@ -145,7 +145,7 @@
                                 <i class="las la-tachometer-alt"></i> <span data-key="t-dashboards">Dashboards</span>
                             </a>
                         </li>
-                        <?php if (!in_array(session('role'), [3,1])){ ?>
+                        <?php if (in_array(session('role'), [3,1])){ ?>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="<?= site_url('cpns')?>">
                                 <i class="ri-profile-line"></i> <span data-key="t-dashboards">CPNS</span>
