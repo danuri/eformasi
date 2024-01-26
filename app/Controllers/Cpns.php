@@ -25,7 +25,7 @@ class Cpns extends BaseController
           return view('cpns_rekapitulasi', $data);
         }
 
-        if(date('Ymd') > '20240126'){
+        if(date('Ymd') > '20240125'){
           $crud = new CrudModel;
           $data['rekap'] = $crud->getRekapCpns();
 

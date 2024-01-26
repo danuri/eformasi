@@ -30,7 +30,7 @@ class Pppk extends BaseController
         return view('nonasn/rekapitulasi', $data);
       }
 
-      if(date('Ymd') > '20240126'){
+      if(date('Ymd') > '20240125'){
         $crud = new CrudModel;
         $data['rekap'] = $crud->getRekapPppk();
 
@@ -352,7 +352,7 @@ class Pppk extends BaseController
         return view('nonasn/tambahan_rekapitulasi', $data);
       }
 
-      if(date('Ymd') > '20240126'){
+      if(date('Ymd') > '20240125'){
         $crud = new CrudModel;
         $data['rekap'] = $crud->getRekapPppkTambahan();
 
