@@ -7,11 +7,23 @@ use App\Models\UnorStrukturModel;
 use App\Models\JabatanModel;
 use App\Models\UsulanJabatanModel;
 use App\Models\CrudModel;
+use App\Models\UserModel;
+use Aws\S3\S3Client;
 
 class Cpns extends BaseController
 {
     public function index()
     {
+        $muser = new UserModel;
+        $user = $muser->where('kode_satker',session('kodesatker'))->first();
+
+        if($user->lampiran_cpns){
+          $crud = new CrudModel;
+          $data['rekap'] = $crud->getRekapCpns();
+
+          return view('cpns_rekapitulasi', $data);
+        }
+
         $jabm = new JabatanModel;
         $data['jabatan'] = $jabm->findAll();
 
@@ -128,5 +140,58 @@ class Cpns extends BaseController
       // $data =
       $json = array('value'=>$data);
       return $this->response->setJSON($json);
+    }
+
+    public function final()
+    {
+        $validationRule = [
+          'lampiran' => [
+              'label' => 'Lampiran',
+              'rules' => 'uploaded[lampiran]'
+                  . '|ext_in[lampiran,pdf,PDF]'
+          ],
+      ];
+
+    if (! $this->validate($validationRule)) {
+          session()->setFlashdata('message', $this->validator->getErrors()['lampiran']);
+          return redirect()->back();
+    }
+
+    $file_name = $_FILES['lampiran']['name'];
+    $ext = pathinfo($file_name, PATHINFO_EXTENSION);
+
+    $file_name = 'sptjm.cpns.'.session('kodesatker').'.'.$ext;
+    $temp_file_location = $_FILES['lampiran']['tmp_name'];
+
+    $s3 = new S3Client([
+      'region'  => 'us-east-1',
+      'endpoint' => 'https://docu.kemenag.go.id:9000/',
+      'use_path_style_endpoint' => true,
+      'version' => 'latest',
+      'credentials' => [
+        'key'    => "118ZEXFCFS0ICPCOLIEJ",
+        'secret' => "9xR+TBkYyzw13guLqN7TLvxhfuOHSW++g7NCEdgP",
+      ],
+      'http'    => [
+          'verify' => false
+      ]
+    ]);
+
+    $result = $s3->putObject([
+      'Bucket' => 'sscasn',
+      'Key'    => '2024/eformasi/'.$file_name,
+      'SourceFile' => $temp_file_location,
+      'ContentType' => 'application/pdf'
+    ]);
+
+    $up = new UserModel;
+      $data = [
+        'lampiran_cpns' => $file_name
+      ];
+
+    $update = $up->where(['kode_satker_parent'=>session('kodesatker')])->set($data)->update();
+
+    session()->setFlashdata('message', 'Dokumen telah diunggah');
+    return redirect()->back();
     }
 }

@@ -43,6 +43,7 @@ $routes->group("cpns", ["filter" => "satkerauth"], function ($routes) {
     $routes->get('rekap', 'Cpns::rekap');
     $routes->get('getjabatan/(:any)', 'Cpns::getjabatan/$1');
     $routes->post('save', 'Cpns::save');
+    $routes->post('final', 'Cpns::final');
 });
 
 $routes->group("pppk", ["filter" => "auth"], function ($routes) {
@@ -58,10 +59,12 @@ $routes->group("pppk", ["filter" => "auth"], function ($routes) {
     $routes->get('inject/(:any)', 'Pppk::inject/$1');
     $routes->post('inject/(:any)', 'Pppk::import/$1');
     $routes->get('rekap', 'Pppk::rekap');
+    $routes->post('final', 'Pppk::final');
 
     $routes->get('tambahan', 'Pppk::tambahan');
     $routes->post('tambahan', 'Pppk::tambahansave');
     $routes->get('tambahan/delete/(:any)', 'Pppk::tambahandelete/$1');
+    $routes->post('tambahanfinal', 'Cpns::tambahanfinal');
 });
 
 $routes->group("referensi", ["filter" => "auth"], function ($routes) {

@@ -65,9 +65,9 @@ class Auth extends BaseController
             ];
             session()->set($ses_data);
 
-            if($cek->role == 1){
-              return redirect()->to('home');
-            }
+            // if($cek->role == 1){
+            // }
+            return redirect()->to('home');
           }else{
             return redirect()->to('auth/forbidden');
           }

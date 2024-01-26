@@ -25,7 +25,7 @@ class SatkerAuth implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-      if (!in_array(session()->get('role'), [1]))
+      if (!in_array(session()->get('role'), [0,1]))
       {
           return redirect()
               ->to($_ENV['SSO_SIGNIN'].'?appid='.$_ENV['SSO_APPID']);

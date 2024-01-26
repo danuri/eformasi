@@ -8,6 +8,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use App\Models\NonasnModel;
 use App\Models\PendidikanModel;
 use App\Models\JabatanModel;
+use App\Models\UserModel;
 use App\Models\UnorModel;
 use App\Models\CrudModel;
 use App\Models\NonasnTambahanModel;
@@ -17,6 +18,16 @@ class Pppk extends BaseController
 {
     public function index()
     {
+      $muser = new UserModel;
+      $user = $muser->where('kode_satker',session('kodesatker'))->first();
+
+      if($user->lampiran_pppk){
+        $crud = new CrudModel;
+        $data['rekap'] = $crud->getRekapPppk();
+
+        return view('nonasn/rekapitulasi', $data);
+      }
+
       $model = new NonasnModel;
       if(session('role') == 2){
         $data['satker'] = $model->getCountChild(session('kodesatker'));
@@ -263,8 +274,71 @@ class Pppk extends BaseController
       exit();
     }
 
+    public function final()
+    {
+        $validationRule = [
+          'lampiran' => [
+              'label' => 'Lampiran',
+              'rules' => 'uploaded[lampiran]'
+                  . '|ext_in[lampiran,pdf,PDF]'
+          ],
+      ];
+
+    if (! $this->validate($validationRule)) {
+          session()->setFlashdata('message', $this->validator->getErrors()['lampiran']);
+          return redirect()->back();
+    }
+
+    $file_name = $_FILES['lampiran']['name'];
+    $ext = pathinfo($file_name, PATHINFO_EXTENSION);
+
+    $file_name = 'sptjm.cpppk.'.session('kodesatker').'.'.$ext;
+    $temp_file_location = $_FILES['lampiran']['tmp_name'];
+
+    $s3 = new S3Client([
+      'region'  => 'us-east-1',
+      'endpoint' => 'https://docu.kemenag.go.id:9000/',
+      'use_path_style_endpoint' => true,
+      'version' => 'latest',
+      'credentials' => [
+        'key'    => "118ZEXFCFS0ICPCOLIEJ",
+        'secret' => "9xR+TBkYyzw13guLqN7TLvxhfuOHSW++g7NCEdgP",
+      ],
+      'http'    => [
+          'verify' => false
+      ]
+    ]);
+
+    $result = $s3->putObject([
+      'Bucket' => 'sscasn',
+      'Key'    => '2024/eformasi/'.$file_name,
+      'SourceFile' => $temp_file_location,
+      'ContentType' => 'application/pdf'
+    ]);
+
+    $up = new UserModel;
+      $data = [
+        'lampiran_pppk' => $file_name
+      ];
+
+    $update = $up->where(['kode_satker_parent'=>session('kodesatker')])->set($data)->update();
+
+    session()->setFlashdata('message', 'Dokumen telah diunggah');
+    return redirect()->back();
+    }
+
     public function tambahan()
     {
+      $muser = new UserModel;
+      $user = $muser->where('kode_satker',session('kodesatker'))->first();
+
+      if($user->lampiran_pppk_tambahan){
+        $crud = new CrudModel;
+        $data['rekap'] = $crud->getRekapPppk();
+
+        return view('nonasn/rekapitulasi', $data);
+      }
+
       $model = new NonasnTambahanModel;
       $kodesatker = kodekepala(session('kodesatker'));
       $data['nonasn'] = $model->like('kode_satker', $kodesatker, 'after')->findAll();
@@ -319,5 +393,58 @@ class Pppk extends BaseController
       $delete = $model->delete($id);
 
       return redirect()->back()->with('message', 'Data telah dihapus');
+    }
+
+    public function final()
+    {
+        $validationRule = [
+          'lampiran' => [
+              'label' => 'Lampiran',
+              'rules' => 'uploaded[lampiran]'
+                  . '|ext_in[lampiran,pdf,PDF]'
+          ],
+      ];
+
+    if (! $this->validate($validationRule)) {
+          session()->setFlashdata('message', $this->validator->getErrors()['lampiran']);
+          return redirect()->back();
+    }
+
+    $file_name = $_FILES['lampiran']['name'];
+    $ext = pathinfo($file_name, PATHINFO_EXTENSION);
+
+    $file_name = 'sptjm.cpppktambahan.'.session('kodesatker').'.'.$ext;
+    $temp_file_location = $_FILES['lampiran']['tmp_name'];
+
+    $s3 = new S3Client([
+      'region'  => 'us-east-1',
+      'endpoint' => 'https://docu.kemenag.go.id:9000/',
+      'use_path_style_endpoint' => true,
+      'version' => 'latest',
+      'credentials' => [
+        'key'    => "118ZEXFCFS0ICPCOLIEJ",
+        'secret' => "9xR+TBkYyzw13guLqN7TLvxhfuOHSW++g7NCEdgP",
+      ],
+      'http'    => [
+          'verify' => false
+      ]
+    ]);
+
+    $result = $s3->putObject([
+      'Bucket' => 'sscasn',
+      'Key'    => '2024/eformasi/'.$file_name,
+      'SourceFile' => $temp_file_location,
+      'ContentType' => 'application/pdf'
+    ]);
+
+    $up = new UserModel;
+      $data = [
+        'lampiran_pppk_tambahan' => $file_name
+      ];
+
+    $update = $up->where(['kode_satker_parent'=>session('kodesatker')])->set($data)->update();
+
+    session()->setFlashdata('message', 'Dokumen telah diunggah');
+    return redirect()->back();
     }
 }
