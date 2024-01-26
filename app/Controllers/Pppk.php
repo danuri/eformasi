@@ -395,7 +395,7 @@ class Pppk extends BaseController
       return redirect()->back()->with('message', 'Data telah dihapus');
     }
 
-    public function final()
+    public function tambahanfinal()
     {
         $validationRule = [
           'lampiran' => [
