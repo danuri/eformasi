@@ -145,7 +145,7 @@
                                 <i class="las la-tachometer-alt"></i> <span data-key="t-dashboards">Dashboards</span>
                             </a>
                         </li>
-                        <?php if(session('role') < 2){ ?>
+                        <?php if (!in_array(session('role'), [3,1])){ ?>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="<?= site_url('cpns')?>">
                                 <i class="ri-profile-line"></i> <span data-key="t-dashboards">CPNS</span>
@@ -162,7 +162,7 @@
                                 <i class="ri-profile-line"></i> <span data-key="t-dashboards">PPPK Tambahan</span>
                             </a>
                         </li>
-                        <?php if(session('role') < 2){ ?>
+                        <?php if(session('role') == 1){ ?>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="<?= site_url('users')?>">
                                 <i class="ri-profile-line"></i> <span data-key="t-dashboards">Pengguna</span>
@@ -178,7 +178,7 @@
               							<a href="<?= site_url('referensi/jabatan/pelaksana')?>" class="dropdown-item rounded">Jabatan Pelaksana</a>
               						</div>
               					</li>
-                        <?php if(session('role') == 0){ ?>
+                        <?php if(session('role') == 3){ ?>
                           <li class="nav-item nav-item-dropdown-lg dropdown">
                 						<a href="#" class="nav-link dropdown-toggle rounded" data-bs-toggle="dropdown">
                 							<i class="ri-profile-line"></i> <span data-key="t-dashboards">Rekapitulasi</span>
