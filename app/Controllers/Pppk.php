@@ -13,6 +13,7 @@ use App\Models\UnorModel;
 use App\Models\CrudModel;
 use App\Models\NonasnTambahanModel;
 use CodeIgniter\Files\File;
+use Aws\S3\S3Client;
 
 class Pppk extends BaseController
 {
