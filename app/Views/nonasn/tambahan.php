@@ -10,6 +10,7 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#addmodal">Tambah Baru</button></li>
+                        <li class="breadcrumb-item"><a href="<?= site_url('pppk/tambahan/rekap')?>" class="btn btn-warning">Rekapitulasi</a></li>
                     </ol>
                 </div>
 

@@ -84,6 +84,13 @@ class CrudModel extends Model
         return $query;
       }
 
+      public function getRekapPppkTambahan()
+      {
+        $kodesatker = kodekepala(session('kodesatker'));
+        $query = $this->db->query("SELECT jabatan,unit_nama, COUNT(*) AS jumlah FROM nonasn_tambahan WHERE kode_satker LIKE '$kodesatker%' GROUP BY jabatan, unit_nama")->getResult();
+        return $query;
+      }
+
       public function getRekapCpns()
       {
         $kodesatker = session('kodesatker');

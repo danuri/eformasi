@@ -396,6 +396,14 @@ class Pppk extends BaseController
       return redirect()->back()->with('message', 'Data telah dihapus');
     }
 
+    public function tambahanrekap()
+    {
+      $crud = new CrudModel;
+      $data['rekap'] = $crud->getRekapPppkTambahan();
+
+      return view('nonasn/tambahan_rekapitulasi', $data);
+    }
+
     public function tambahanfinal()
     {
         $validationRule = [
