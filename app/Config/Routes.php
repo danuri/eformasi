@@ -65,7 +65,7 @@ $routes->group("pppk", ["filter" => "auth"], function ($routes) {
     $routes->post('tambahan', 'Pppk::tambahansave');
     $routes->get('tambahan/delete/(:any)', 'Pppk::tambahandelete/$1');
     $routes->get('tambahan/rekap', 'Pppk::tambahanrekap');
-    $routes->post('tambahanfinal', 'Pppk::tambahanfinal');
+    $routes->post('tambahan/final', 'Pppk::tambahanfinal');
 });
 
 $routes->group("referensi", ["filter" => "auth"], function ($routes) {

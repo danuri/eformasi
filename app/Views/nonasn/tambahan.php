@@ -61,7 +61,7 @@
               						<i class="ph-info me-2"></i>
               						<span class="fw-semibold">Perhatian!</span> Pastikan usulan sudah sesuai. Ketika Anda mengunggah Pengantar dan SPTJM, maka Anda tidak lagi dapat menambah/mengubah data.
               				    </div>
-				                	<form action="<?= site_url('pppk/finaltambahan')?>" method="post" enctype="multipart/form-data">
+				                	<form action="<?= site_url('pppk/tambahan/final')?>" method="post" enctype="multipart/form-data">
 										<div class="mb-3">
 											<label class="form-label">Pengantar Surat Usulan dan SPTJM (Usulan CPPPK Tambahan):</label>
 											<input type="file" class="form-control" name="lampiran" placeholder="PDF">
