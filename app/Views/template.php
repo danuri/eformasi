@@ -184,9 +184,9 @@
                 							<i class="ri-profile-line"></i> <span data-key="t-dashboards">Rekapitulasi</span>
                 						</a>
                 						<div class="dropdown-menu">
-                              <a href="<?= site_url('referensi/jabatan/pelaksana')?>" class="dropdown-item rounded">CPNS</a>
-                              <a href="<?= site_url('referensi/jabatan/pelaksana')?>" class="dropdown-item rounded">CPPPK</a>
-                              <a href="<?= site_url('referensi/jabatan/pelaksana')?>" class="dropdown-item rounded">CPPPK Tambahan</a>
+                              <a href="<?= site_url('rekapitulasi/cpns')?>" class="dropdown-item rounded">CPNS</a>
+                              <a href="<?= site_url('rekapitulasi/pppk')?>" class="dropdown-item rounded">CPPPK</a>
+                              <a href="<?= site_url('rekapitulasi/pppk/tambahan')?>" class="dropdown-item rounded">CPPPK Tambahan</a>
                 						</div>
                 					</li>
                         <?php } ?>

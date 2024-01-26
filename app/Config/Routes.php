@@ -22,6 +22,7 @@ $routes->get('auth/forbidden', 'Auth::forbidden');
 
 $routes->get('/', 'Home::index',['filter' => 'auth']);
 $routes->get('home', 'Home::index',['filter' => 'auth']);
+$routes->get('monitor', 'Monitor::index');
 
 $routes->get('rekapitulasi', 'Rekapitulasi::index',['filter' => 'auth']);
 $routes->group("bezzeting", ["filter" => "auth"], function ($routes) {
@@ -70,6 +71,11 @@ $routes->group("pppk", ["filter" => "auth"], function ($routes) {
 
 $routes->group("referensi", ["filter" => "auth"], function ($routes) {
     $routes->get('jabatan/pelaksana', 'Referensi::jabatanpelaksana');
+});
+
+$routes->group("rekapitulasi", ["filter" => "auth"], function ($routes) {
+    $routes->get('cpns', 'Rekapitulasi::cpns');
+    $routes->post('getcpns', 'Rekapitulasi::getCpns');
 });
 
 $routes->group("users", ["filter" => "satkerauth"], function ($routes) {

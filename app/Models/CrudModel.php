@@ -112,6 +112,43 @@ class CrudModel extends Model
         return $query;
       }
 
+      public function finalRekapCpns()
+      {
+        $query = $this->db->query("SELECT
+                                  	tr_usulan_jabatan.unor_id,
+                                  	ref_unor.nama,
+                                  	tr_usulan_jabatan.jabatan,
+                                  	tr_usulan_jabatan.pendidikan,
+                                  	SUM(tr_usulan_jabatan.bezzeting) AS jumlahbez,
+                                  	SUM(tr_usulan_jabatan.kebutuhan) AS jumlahkeb
+                                  FROM
+                                  	tr_usulan_jabatan
+                                  	INNER JOIN
+                                  	ref_unor
+                                  	ON
+                                  		tr_usulan_jabatan.unor_id = ref_unor.id
+                                  GROUP BY tr_usulan_jabatan.unor_id, tr_usulan_jabatan.jabatan, tr_usulan_jabatan.pendidikan")->getResult();
+        return $query;
+      }
+
+      public function monitorPppk()
+      {
+        $query = $this->db->query("SELECT COUNT(*) AS jumlah FROM nonasn WHERE status_nonasn='NON ASN' AND status_pemetaan='Aktif' AND jabatan_baru IS NOT NULL")->getRow();
+        return $query;
+      }
+
+      public function monitorPppkTambahan()
+      {
+        $query = $this->db->query("SELECT COUNT(*) AS jumlah FROM nonasn_tambahan")->getRow();
+        return $query;
+      }
+
+      public function monitorCpns()
+      {
+        $query = $this->db->query("SELECT COUNT(*) AS jumlah FROM tr_usulan_jabatan")->getRow();
+        return $query;
+      }
+
       public function getKuota()
       {
         $satker = session('idsatker');
