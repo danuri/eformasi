@@ -17,7 +17,7 @@ class Cpns extends BaseController
         $muser = new UserModel;
         $user = $muser->where('kode_satker',session('kodesatker'))->first();
 
-        if(!is_null($user->lampiran_cpns)){
+        if(!empty($user->lampiran_cpns)){
           $crud = new CrudModel;
           $data['rekap'] = $crud->getRekapCpns();
 
