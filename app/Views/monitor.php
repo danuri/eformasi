@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.118.2">
-    <title>View Doc</title>
+    <title>Monitoring</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/starter-template/">
 
@@ -175,7 +175,7 @@
   <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
     <a href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
       <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-      <span class="fs-4">Unggahan Dokumen "<?= $dokumen->dokumen?>"</span>
+      <span class="fs-4">Rekapitulasi Usulan CASN 2024</span>
     </a>
   </header>
 
