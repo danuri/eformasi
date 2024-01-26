@@ -335,9 +335,9 @@ class Pppk extends BaseController
 
       if(!empty($user->lampiran_pppk_tambahan)){
         $crud = new CrudModel;
-        $data['rekap'] = $crud->getRekapPppk();
+        $data['rekap'] = $crud->getRekapPppkTambahan();
 
-        return view('nonasn/rekapitulasi', $data);
+        return view('nonasn/tambahan_rekapitulasi', $data);
       }
 
       $model = new NonasnTambahanModel;
