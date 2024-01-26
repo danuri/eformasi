@@ -39,18 +39,18 @@ $routes->group("bezzeting", ["filter" => "auth"], function ($routes) {
 $routes->group("cpns", ["filter" => "satkerauth"], function ($routes) {
     $routes->get('', 'Cpns::index');
     $routes->get('sub/(:any)', 'Cpns::sub/$1');
-    $routes->get('delete/(:any)', 'Cpns::delete/$1');
-    $routes->post('insert', 'Cpns::insert');
+    // $routes->get('delete/(:any)', 'Cpns::delete/$1');
+    // $routes->post('insert', 'Cpns::insert');
     $routes->get('rekap', 'Cpns::rekap');
     $routes->get('getjabatan/(:any)', 'Cpns::getjabatan/$1');
-    $routes->post('save', 'Cpns::save');
+    // $routes->post('save', 'Cpns::save');
     $routes->post('final', 'Cpns::final');
 });
 
 $routes->group("pppk", ["filter" => "auth"], function ($routes) {
     $routes->get('', 'Pppk::index');
     $routes->get('edit/(:any)', 'Pppk::edit/$1');
-    $routes->post('edit/(:any)', 'Pppk::editsave/$1');
+    // $routes->post('edit/(:any)', 'Pppk::editsave/$1');
     $routes->get('data/(:any)', 'Pppk::data/$1');
     $routes->get('status/(:any)/(:any)', 'Pppk::status/$1/$2');
     $routes->get('statuspegawai/(:any)/(:any)', 'Pppk::statuspegawai/$1/$2');
@@ -58,12 +58,12 @@ $routes->group("pppk", ["filter" => "auth"], function ($routes) {
     $routes->get('searchpendidikan', 'Pppk::searchpendidikan');
     $routes->get('export/(:any)', 'Pppk::export/$1');
     $routes->get('inject/(:any)', 'Pppk::inject/$1');
-    $routes->post('inject/(:any)', 'Pppk::import/$1');
+    // $routes->post('inject/(:any)', 'Pppk::import/$1');
     $routes->get('rekap', 'Pppk::rekap');
     $routes->post('final', 'Pppk::final');
 
     $routes->get('tambahan', 'Pppk::tambahan');
-    $routes->post('tambahan', 'Pppk::tambahansave');
+    // $routes->post('tambahan', 'Pppk::tambahansave');
     $routes->get('tambahan/delete/(:any)', 'Pppk::tambahandelete/$1');
     $routes->get('tambahan/rekap', 'Pppk::tambahanrekap');
     $routes->post('tambahan/final', 'Pppk::tambahanfinal');
