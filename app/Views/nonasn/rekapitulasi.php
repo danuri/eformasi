@@ -46,7 +46,39 @@
               </table>
           </div>
         </div>
+
+        <div class="card">
+					<div class="card-header">
+		                <h6 class="mb-0">Final Usulan</h6>
+					</div>
+
+	                <div class="card-body">
+                    <div class="alert alert-info alert-dismissible fade show">
+        						<i class="ph-info me-2"></i>
+        						<span class="fw-semibold">Perhatian!</span> Pastikan usulan sudah sesuai. Ketika Anda mengunggah Pengantar dan SPTJM, maka Anda tidak lagi dapat menambah/mengubah data.
+        				    </div>
+
+                    <?php if(!empty($user->lampiran_pppk)){ ?>
+                    <div class="alert alert-warning alert-dismissible fade show">
+                      <i class="ph-info me-2"></i>
+                      <span class="fw-semibold"><a href="https://docu.kemenag.go.id:9000/sscasn/2024/eformasi/<?= $user->lampiran_pppk?>" target="_blank">Lihat Dokumen</a></div>
+                    <?php } ?>
+
+	                	<form action="<?= site_url('pppk/final')?>" method="post" enctype="multipart/form-data">
+							<div class="mb-3">
+								<label class="form-label">Pengantar Surat Usulan dan SPTJM (Usulan CPPPK):</label>
+								<input type="file" class="form-control" name="lampiran" placeholder="PDF">
+							</div>
+
+							<div class="d-flex align-items-center">
+								<button type="submit" class="btn btn-primary ms-3">Submit <i class="ph-paper-plane-tilt ms-2"></i></button>
+							</div>
+						</form>
+					</div>
+        </div>
       </div>
     </div>
 </div>
+
+
 <?= $this->endSection() ?>

@@ -16,10 +16,19 @@ class Cpns extends BaseController
     {
         $muser = new UserModel;
         $user = $muser->where('kode_satker',session('kodesatker'))->first();
+        $data['user'] = $user;
 
         if(!empty($user->lampiran_cpns)){
           $crud = new CrudModel;
           $data['rekap'] = $crud->getRekapCpns();
+
+          return view('cpns_rekapitulasi', $data);
+        }
+
+        if(date('Ymd') > '20240126'){
+          $crud = new CrudModel;
+          $data['rekap'] = $crud->getRekapCpns();
+
 
           return view('cpns_rekapitulasi', $data);
         }
@@ -121,6 +130,9 @@ class Cpns extends BaseController
     {
       $crud = new CrudModel;
       $data['rekap'] = $crud->getRekapCpns();
+
+      $muser = new UserModel;
+      $data['user'] = $muser->where('nip',session('nip'))->first();
 
       return view('cpns_rekapitulasi', $data);
     }
