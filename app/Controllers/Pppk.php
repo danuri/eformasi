@@ -21,7 +21,7 @@ class Pppk extends BaseController
       $muser = new UserModel;
       $user = $muser->where('kode_satker',session('kodesatker'))->first();
 
-      if(!is_null($user->lampiran_pppk)){
+      if(!empty($user->lampiran_pppk)){
         $crud = new CrudModel;
         $data['rekap'] = $crud->getRekapPppk();
 
@@ -332,7 +332,7 @@ class Pppk extends BaseController
       $muser = new UserModel;
       $user = $muser->where('kode_satker',session('kodesatker'))->first();
 
-      if(!is_null($user->lampiran_pppk_tambahan)){
+      if(!empty($user->lampiran_pppk_tambahan)){
         $crud = new CrudModel;
         $data['rekap'] = $crud->getRekapPppk();
 
