@@ -30,12 +30,12 @@ class Pppk extends BaseController
         return view('nonasn/rekapitulasi', $data);
       }
 
-      if(date('Ymd') > '20240125'){
-        $crud = new CrudModel;
-        $data['rekap'] = $crud->getRekapPppk();
-
-        return view('nonasn/rekapitulasi', $data);
-      }
+      // if(date('Ymd') > '20240125'){
+      //   $crud = new CrudModel;
+      //   $data['rekap'] = $crud->getRekapPppk();
+      //
+      //   return view('nonasn/rekapitulasi', $data);
+      // }
 
       $model = new NonasnModel;
       if(session('role') == 2){

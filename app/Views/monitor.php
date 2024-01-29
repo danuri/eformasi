@@ -184,22 +184,24 @@
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-bordered">
-            <tr>
-              <td>CPNS</td>
-              <td><?= $cpns->jumlah;?></td>
-            </tr>
-            <tr>
-              <td>CPPPK</td>
-              <td><?= $cpppk->jumlah;?></td>
-            </tr>
-            <tr>
-              <td>CPPPK Tambahan</td>
-              <td><?= $cpppktambahan->jumlah;?></td>
-            </tr>
-            <tr>
-              <td>Total</td>
-              <td><?= $cpns->jumlah + $cpppk->jumlah + $cpppktambahan->jumlah;?></td>
-            </tr>
+            <thead>
+              <tr>
+                <td>SATKER</td>
+                <td>CPNS</td>
+                <td>CPPPK</td>
+                <td>CPPPK Tambahan</td>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($users as $row) {?>
+                <tr>
+                  <td><?= $row->satuan_kerja?></td>
+                  <td><?= $row->lampiran_cpns?></td>
+                  <td><?= $row->lampiran_pppk?></td>
+                  <td><?= $row->lampiran_pppk_tambahan?></td>
+                </tr>
+              <?php } ?>
+            </tbody>
           </table>
         </div>
       </div>
