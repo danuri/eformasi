@@ -196,9 +196,9 @@
               <?php foreach ($users as $row) {?>
                 <tr>
                   <td><?= $row->satuan_kerja?></td>
-                  <td><a href="https://docu.kemenag.go.id:9000/sscasn/2024/eformasi/<?= $user->lampiran_cpns?>" target="_blank">Lihat Dokumen</a></td>
-                  <td><a href="https://docu.kemenag.go.id:9000/sscasn/2024/eformasi/<?= $user->lampiran_pppk?>" target="_blank">Lihat Dokumen</a></td>
-                  <td><a href="https://docu.kemenag.go.id:9000/sscasn/2024/eformasi/<?= $user->lampiran_pppk_tambahan?>" target="_blank">Lihat Dokumen</a></td>
+                  <td><a href="https://docu.kemenag.go.id:9000/sscasn/2024/eformasi/<?= $row->lampiran_cpns?>" target="_blank">Lihat Dokumen</a></td>
+                  <td><a href="https://docu.kemenag.go.id:9000/sscasn/2024/eformasi/<?= $row->lampiran_pppk?>" target="_blank">Lihat Dokumen</a></td>
+                  <td><a href="https://docu.kemenag.go.id:9000/sscasn/2024/eformasi/<?= $row->lampiran_pppk_tambahan?>" target="_blank">Lihat Dokumen</a></td>
                 </tr>
               <?php } ?>
             </tbody>
