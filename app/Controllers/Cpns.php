@@ -25,13 +25,13 @@ class Cpns extends BaseController
           return view('cpns_rekapitulasi', $data);
         }
 
-        if(date('Ymd') > '20240125'){
-          $crud = new CrudModel;
-          $data['rekap'] = $crud->getRekapCpns();
-
-
-          return view('cpns_rekapitulasi', $data);
-        }
+        // if(date('Ymd') > '20240125'){
+        //   $crud = new CrudModel;
+        //   $data['rekap'] = $crud->getRekapCpns();
+        //
+        //
+        //   return view('cpns_rekapitulasi', $data);
+        // }
 
         $jabm = new JabatanModel;
         $data['jabatan'] = $jabm->findAll();

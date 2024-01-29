@@ -39,11 +39,11 @@ $routes->group("bezzeting", ["filter" => "auth"], function ($routes) {
 $routes->group("cpns", ["filter" => "satkerauth"], function ($routes) {
     $routes->get('', 'Cpns::index');
     $routes->get('sub/(:any)', 'Cpns::sub/$1');
-    // $routes->get('delete/(:any)', 'Cpns::delete/$1');
-    // $routes->post('insert', 'Cpns::insert');
+    $routes->get('delete/(:any)', 'Cpns::delete/$1');
+    $routes->post('insert', 'Cpns::insert');
     $routes->get('rekap', 'Cpns::rekap');
     $routes->get('getjabatan/(:any)', 'Cpns::getjabatan/$1');
-    // $routes->post('save', 'Cpns::save');
+    $routes->post('save', 'Cpns::save');
     $routes->post('final', 'Cpns::final');
 });
 
