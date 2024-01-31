@@ -81,5 +81,5 @@ $routes->group("rekapitulasi", ["filter" => "auth"], function ($routes) {
 $routes->group("users", ["filter" => "satkerauth"], function ($routes) {
     $routes->get('', 'Users::index');
     $routes->get('delete/(:any)', 'Users::delete/$1');
-    $routes->post('add', 'Users::add');
+    // $routes->post('add', 'Users::add');
 });
