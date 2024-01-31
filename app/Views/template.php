@@ -162,13 +162,6 @@
                                 <i class="ri-profile-line"></i> <span data-key="t-dashboards">PPPK Tambahan</span>
                             </a>
                         </li>
-                        <?php if(session('role') == 1){ ?>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="<?= site_url('users')?>">
-                                <i class="ri-profile-line"></i> <span data-key="t-dashboards">Pengguna</span>
-                            </a>
-                        </li>
-                        <?php } ?>
                         <li class="nav-item nav-item-dropdown-lg dropdown">
               						<a href="#" class="nav-link dropdown-toggle rounded" data-bs-toggle="dropdown">
               							<i class="ri-profile-line"></i> <span data-key="t-dashboards">Referensi</span>
